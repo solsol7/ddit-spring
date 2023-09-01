@@ -1,0 +1,196 @@
+
+8월 29, 2023 11:22:00.178 NEW SESSION
+8월 29, 2023 11:22:00.178 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 11:24:47.741 [10624:3260:0829/112447.741:ERROR:navigation_entry_remover.cc(221)] RemoveNavigationEntries(), deleted_rows count = 0, is_from_expiration = 0, deletion_reason = 1
+8월 29, 2023 11:24:48.328 [10624:3260:0829/112448.328:ERROR:sharing_service.cc(250)] Device un-registration failed with fatal error
+8월 29, 2023 11:24:55.125 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 11:29:39.464 [7432:13912:0829/112939.464:ERROR:cert_verify_proc_builtin.cc(701)] CertVerifyProcBuiltin for beacons.gcp.gvt2.com failed:
+8월 29, 2023 11:29:39.465 ----- Certificate i=0 (CN=*.gcp.gvt2.com) -----
+8월 29, 2023 11:29:39.465 ERROR: Time is after notAfter
+8월 29, 2023 11:29:39.466 
+8월 29, 2023 11:29:39.466 
+8월 29, 2023 11:31:26.661 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 11:40:46.71 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 11:46:02.612 [17312:6140:0829/114602.611:ERROR:cert_verify_proc_builtin.cc(701)] CertVerifyProcBuiltin for beacons.gcp.gvt2.com failed:
+8월 29, 2023 11:46:02.612 ----- Certificate i=0 (CN=*.gcp.gvt2.com) -----
+8월 29, 2023 11:46:02.613 ERROR: Time is after notAfter
+8월 29, 2023 11:46:02.613 
+8월 29, 2023 11:46:02.613 
+8월 29, 2023 11:46:11.733 [17312:6140:0829/114611.732:ERROR:cert_verify_proc_builtin.cc(701)] CertVerifyProcBuiltin for e2c56.gcp.gvt2.com failed:
+8월 29, 2023 11:46:11.733 ----- Certificate i=0 (CN=*.gcp.gvt2.com) -----
+8월 29, 2023 11:46:11.733 ERROR: Time is after notAfter
+8월 29, 2023 11:46:11.733 
+8월 29, 2023 11:46:11.733 
+8월 29, 2023 12:27:14.198 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 12:28:16.110 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 12:32:48.655 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 12:41:22.159 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 12:42:42.140 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 12:45:34.168 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 12:47:16.129 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 29, 2023 13:44:20.12 NEW SESSION
+8월 29, 2023 13:44:20.12 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 13:44:47.809 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 13:45:25.641 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 13:46:28.261 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 13:46:44.540 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 13:48:50.435 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 13:51:32.116 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 13:53:12.650 [15172:1148:0829/135312.650:ERROR:cert_verify_proc_builtin.cc(701)] CertVerifyProcBuiltin for e2c64.gcp.gvt2.com failed:
+8월 29, 2023 13:53:12.651 ----- Certificate i=0 (CN=*.gcp.gvt2.com) -----
+8월 29, 2023 13:53:12.651 ERROR: Time is after notAfter
+8월 29, 2023 13:53:12.652 
+8월 29, 2023 13:53:12.652 
+8월 29, 2023 13:53:12.653 [15172:5692:0829/135312.650:ERROR:cert_verify_proc_builtin.cc(701)] CertVerifyProcBuiltin for e2c47.gcp.gvt2.com failed:
+8월 29, 2023 13:53:12.653 ----- Certificate i=0 (CN=*.gcp.gvt2.com) -----
+8월 29, 2023 13:53:12.653 ERROR: Time is after notAfter
+8월 29, 2023 13:53:12.654 
+8월 29, 2023 13:53:12.654 
+8월 29, 2023 18:25:00.489 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 18:28:08.398 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 18:33:40.838 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 18:39:09.326 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 18:41:22.80 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 29, 2023 18:45:04.492 [3100:9764:0829/184504.492:ERROR:cert_verify_proc_builtin.cc(701)] CertVerifyProcBuiltin for beacons.gcp.gvt2.com failed:
+8월 29, 2023 18:45:04.492 ----- Certificate i=0 (CN=*.gcp.gvt2.com) -----
+8월 29, 2023 18:45:04.492 ERROR: Time is after notAfter
+8월 29, 2023 18:45:04.492 
+8월 29, 2023 18:45:04.492 
+8월 29, 2023 18:48:12.142 [3100:5640:0829/184812.142:ERROR:device_event_log_impl.cc(222)] [18:48:12.143] Bluetooth: bluetooth_adapter_winrt.cc:1058 Getting Default Adapter failed.
+8월 29, 2023 18:54:06.265 [3100:9764:0829/185406.265:ERROR:cert_verify_proc_builtin.cc(701)] CertVerifyProcBuiltin for e2c52.gcp.gvt2.com failed:
+8월 29, 2023 18:54:06.266 ----- Certificate i=0 (CN=*.gcp.gvt2.com) -----
+8월 29, 2023 18:54:06.266 ERROR: Time is after notAfter
+8월 29, 2023 18:54:06.266 
+8월 29, 2023 18:54:06.267 
+8월 29, 2023 18:57:23.84 [3100:9764:0829/185723.084:ERROR:cert_verify_proc_builtin.cc(701)] CertVerifyProcBuiltin for e2c59.gcp.gvt2.com failed:
+8월 29, 2023 18:57:23.84 ----- Certificate i=0 (CN=*.gcp.gvt2.com) -----
+8월 29, 2023 18:57:23.85 ERROR: Time is after notAfter
+8월 29, 2023 18:57:23.85 
+8월 29, 2023 18:57:23.85 
+
+8월 30, 2023 08:42:28.807 NEW SESSION
+8월 30, 2023 08:42:28.807 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 30, 2023 08:47:50.96 [14004:1008:0830/084750.096:ERROR:cert_verify_proc_builtin.cc(701)] CertVerifyProcBuiltin for e2c66.gcp.gvt2.com failed:
+8월 30, 2023 08:47:50.97 ----- Certificate i=0 (CN=*.gcp.gvt2.com) -----
+8월 30, 2023 08:47:50.97 ERROR: Time is after notAfter
+8월 30, 2023 08:47:50.98 
+8월 30, 2023 08:47:50.98 
+8월 30, 2023 08:49:01.912 [14004:6788:0830/084901.912:ERROR:CONSOLE(1)] "SyntaxError: Unexpected token (1:136)", source: devtools://devtools/bundled/devtools-frontend/front_end/entrypoints/formatter_worker/formatter_worker.js (1)
+8월 30, 2023 08:49:40.499 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 30, 2023 08:51:12.220 [8400:16860:0830/085112.220:ERROR:CONSOLE(1)] "SyntaxError: Unexpected token (1:136)", source: devtools://devtools/bundled/devtools-frontend/front_end/entrypoints/formatter_worker/formatter_worker.js (1)
+8월 30, 2023 08:55:10.328 [8400:7600:0830/085510.326:ERROR:cert_verify_proc_builtin.cc(701)] CertVerifyProcBuiltin for e2c43.gcp.gvt2.com failed:
+8월 30, 2023 08:55:10.328 ----- Certificate i=0 (CN=*.gcp.gvt2.com) -----
+8월 30, 2023 08:55:10.329 ERROR: Time is after notAfter
+8월 30, 2023 08:55:10.329 
+8월 30, 2023 08:55:10.330 
+8월 30, 2023 09:27:09.729 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 30, 2023 10:23:39.50 [4784:12888:0830/102339.050:ERROR:cert_verify_proc_builtin.cc(701)] CertVerifyProcBuiltin for beacons.gcp.gvt2.com failed:
+8월 30, 2023 10:23:39.51 ----- Certificate i=0 (CN=*.gcp.gvt2.com) -----
+8월 30, 2023 10:23:39.51 ERROR: Time is after notAfter
+8월 30, 2023 10:23:39.52 
+8월 30, 2023 10:23:39.52 
+8월 30, 2023 12:12:31.779 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 30, 2023 12:12:46.849 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 30, 2023 12:26:05.244 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 31, 2023 09:47:00.296 NEW SESSION
+8월 31, 2023 09:47:00.296 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 11:11:22.234 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 11:11:36.275 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 11:11:59.241 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 11:12:07.381 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 11:12:46.811 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 11:13:21.52 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 11:21:14.309 [12848:9880:0831/112114.309:ERROR:device_event_log_impl.cc(222)] [11:21:14.309] Bluetooth: bluetooth_adapter_winrt.cc:1058 Getting Default Adapter failed.
+8월 31, 2023 11:30:49.605 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 11:32:09.870 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 11:38:29.499 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 11:38:40.376 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 11:41:47.583 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 11:42:58.747 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 11:47:21.185 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 12:28:29.923 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 31, 2023 18:06:34.223 NEW SESSION
+8월 31, 2023 18:06:34.223 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 18:09:17.641 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 18:13:10.199 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 18:42:07.538 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 18:44:46.137 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 18:45:20.130 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 18:50:49.346 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 18:53:28.175 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 19:03:03.323 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 19:29:59.127 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 19:32:58.442 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 19:33:33.216 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 19:46:30.563 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 19:46:56.704 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 19:47:14.654 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 19:50:05.670 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 19:55:01.302 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 31, 2023 20:08:29.761 NEW SESSION
+8월 31, 2023 20:08:29.761 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 20:12:48.679 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 20:14:00.484 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 20:14:18.630 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 20:16:50.129 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 20:17:18.23 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 20:18:07.293 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 20:19:05.127 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 20:19:18.418 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 20:19:55.802 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 31, 2023 20:24:18.346 NEW SESSION
+8월 31, 2023 20:24:18.346 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 20:24:56.410 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 31, 2023 20:27:33.884 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 31, 2023 20:47:53.426 NEW SESSION
+8월 31, 2023 20:47:53.426 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 31, 2023 20:50:32.390 NEW SESSION
+8월 31, 2023 20:50:32.390 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+9월 01, 2023 08:34:27.962 NEW SESSION
+9월 01, 2023 08:34:27.962 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 08:35:01.87 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 08:36:37.334 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 08:38:26.315 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 08:43:46.667 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+9월 01, 2023 08:46:16.301 NEW SESSION
+9월 01, 2023 08:46:16.301 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+9월 01, 2023 09:00:47.191 NEW SESSION
+9월 01, 2023 09:00:47.191 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 10:51:20.983 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 10:51:52.199 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 10:52:58.756 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 10:58:00.408 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 10:59:32.708 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 11:08:13.92 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 11:41:57.30 [16228:14956:0901/114157.030:ERROR:mcs_client.cc(750)] Received close command, resetting connection.
+9월 01, 2023 11:45:45.311 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 11:46:12.187 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 11:48:04.266 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 11:49:06.288 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 11:50:17.646 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 11:50:49.541 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 11:54:44.356 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 11:54:53.642 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 11:56:51.434 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 12:10:23.975 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 12:12:57.410 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 12:15:58.220 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 12:16:50.619 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 12:20:22.546 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 13:49:57.790 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 18:50:31.675 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+9월 01, 2023 20:02:44.223 NEW SESSION
+9월 01, 2023 20:02:44.223 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 20:05:07.938 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 20:05:46.667 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.

@@ -1,0 +1,35 @@
+package kr.or.ddit;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/calculate.do")
+public class CalculateServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	enum Op{
+		PLUS("+",(int x, int y) -> {x+y}),
+		MINUS("-",(int x, int y) -> {x+y}),
+		MULTIPLY("*",(int x, int y) -> {x+y}),
+		DIVIDE("/",(int x, int y) -> {x+y})
+	};
+	
+	enum Operator {
+
+	};
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String leftOp = request.getParameter("leftOp");
+		String op = request.getParameter("operator");		
+		String rightOp = request.getParameter("rightOp");
+		
+		
+	}
+
+}

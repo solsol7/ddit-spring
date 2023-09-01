@@ -1,0 +1,20 @@
+package kr.or.ddit.collection;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.jupiter.api.Test;
+
+class MapTest {
+
+	@Test
+	void test() {
+		Map<String, Object> sampleMap = new HashMap<String, Object>();
+		sampleMap.put("key1", new Date());
+		sampleMap.put("key2", new Date());
+	}
+
+}

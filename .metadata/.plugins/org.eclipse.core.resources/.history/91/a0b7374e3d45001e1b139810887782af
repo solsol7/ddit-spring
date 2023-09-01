@@ -1,0 +1,5 @@
+package kr.or.ddit.web;
+
+public class LocaleServlet {
+
+}
