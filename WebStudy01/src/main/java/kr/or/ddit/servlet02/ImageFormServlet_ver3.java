@@ -72,8 +72,6 @@ public class ImageFormServlet_ver3 extends HttpServlet{
 		
 		req.getRequestDispatcher(viewName).forward(req, resp);
 		
-
-
 	}
 }
 

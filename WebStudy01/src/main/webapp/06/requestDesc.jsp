@@ -56,9 +56,11 @@
 <div>
 	<a href="?param1=value1&param2=한글값">Query String 형태 전송</a>
 	<form method="post">
-		<input type="text" name="param3" value="value3">
-		<input type="text" name="param3" value="value3-1">
-		<input type="text" name="param4" value="value4">
+		<input type="text" name="param3" value="value3" />
+		<input type="text" name="param3" value="value3-1" />
+		<input type="text" name="param4" value="value4" />
+		<input type="date" name="date1" />
+		<input type="datetime-local" name="date2" />
 		<input type="submit" value="전송">
 			</form>
 </div>
