@@ -380,3 +380,21 @@
 9월 05, 2023 17:24:10.215 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
 9월 05, 2023 17:35:13.591 [3596:12196:0905/173513.591:ERROR:get_updates_processor.cc(261)] PostClientToServerMessage() failed during GetUpdates with error 2
 9월 05, 2023 17:40:44.177 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+9월 06, 2023 08:45:43.595 NEW SESSION
+9월 06, 2023 08:45:43.595 [7676:9828:0906/084543.594:ERROR:get_updates_processor.cc(261)] PostClientToServerMessage() failed during GetUpdates with error 2
+9월 06, 2023 08:46:03.118 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 06, 2023 08:48:02.189 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 06, 2023 09:05:48.970 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 06, 2023 09:16:06.751 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 06, 2023 10:21:11.185 [8204:4692:0906/102111.185:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.17 s for first_image_paint 0.154 s
+9월 06, 2023 10:21:11.339 [8204:4692:0906/102111.338:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.17 s for first_image_paint 0.154 s
+9월 06, 2023 10:21:11.487 [8204:4692:0906/102111.487:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.17 s for first_image_paint 0.154 s
+9월 06, 2023 10:21:11.617 [8204:4692:0906/102111.617:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.17 s for first_image_paint 0.154 s
+9월 06, 2023 10:21:11.754 [8204:4692:0906/102111.754:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.17 s for first_image_paint 0.154 s
+9월 06, 2023 10:21:12.344 [8204:4692:0906/102112.344:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.17 s for first_image_paint 0.154 s
+9월 06, 2023 10:21:14.439 [8204:4692:0906/102114.439:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.17 s for first_image_paint 0.154 s
+9월 06, 2023 10:21:14.928 [8204:4692:0906/102114.928:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.17 s for first_image_paint 0.154 s
+9월 06, 2023 10:21:15.313 [8204:4692:0906/102115.312:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.17 s for first_image_paint 0.154 s
+9월 06, 2023 10:21:15.494 [8204:4692:0906/102115.494:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.17 s for first_image_paint 0.154 s
+9월 06, 2023 10:34:30.962 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.

@@ -65,7 +65,7 @@ protocol://IP[domain]:port/context/depth../resource_name
 	1) http://localhost/WebStudy01/resources/images/cat4.png
 	2) //localhost/WebStudy01/resources/images/cat4.png
 	3) /WebStudy01/resources/images/cat4.png
-	4) client side - <%=request.getContextPath() %>/resources/images/cat4.png (**)
+	4) client side - <%=request.getContextPath()%>/resources/images/cat4.png (**)
 	5) server side - /resources/images/cat4.png
 상대경로 : 현재 페이지의 출처를 기준으로 경로를 표기함.
 	../resources/images/cat4.png

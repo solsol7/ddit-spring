@@ -1,3 +1,4 @@
+<%@page import="kr.or.ddit.vo.CalendarVO"%>
 <%@page import="java.time.temporal.WeekFields"%>
 <%@page import="java.time.Month"%>
 <%@page import="java.util.stream.Collectors"%>
@@ -13,60 +14,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String yearParam = request.getParameter("year");
-	String monthParam = request.getParameter("month");
-	String localeParam = request.getParameter("locale");
-	
-	Locale locale = Optional.ofNullable(localeParam)
-		.map(lp->Locale.forLanguageTag(lp))
-		.orElse(request.getLocale());
-
-// 	Locale locale = request.getLocale();	//reqeust header(Accept-Language)
-	
-	int year = Optional.ofNullable(yearParam)
-					.filter((yp)->yp.matches("\\d{4}"))
-					.map((yp)->Integer.parseInt(yp))
-					.orElse(Year.now().getValue());
-
-	
-	YearMonth targetMonth = Optional.ofNullable(monthParam)
-								.filter((mp)->mp.matches("[1-9]|1[0-2]"))
-								.map((mp)->Integer.parseInt(mp))
-								.map((m)->YearMonth.of(year, m))
-								.orElse(YearMonth.now());
-	YearMonth beforeMonth = targetMonth.minusMonths(1);
-	YearMonth nextMonth = targetMonth.plusMonths(1);
-	
+	CalendarVO calVO = (CalendarVO)request.getAttribute("calVO");
+	Locale locale = calVO.getLocale();
+	YearMonth targetMonth = calVO.getTargetMonth();
+	YearMonth beforeMonth = calVO.getBeforeMonth();
+	YearMonth nextMonth = calVO.getNextMonth();
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-	.before,.after{
-		color: silver;
-	}
-	table{
-		border-collapse: collapse;
-		width : 100%;
-		min-height : 500px;
-		text-align: center;
-		font-size: large;
-	}
-	th,td{
-		border : 1px solid black;
-	}
-	.SUNDAY{
-		color: red;
-	}
-	.SATURDAY{
-		color: blue;
-	}
-</style>
-</head>
-<body>
 
+<h4>
+<a href="javascript:;" 
+	 data-year="<%=beforeMonth.getYear()%>" data-month="<%=beforeMonth.getMonthValue()%>">&lt;&lt;&lt;</a>
+<%=String.format(locale, "%1$tY, %1$tB", targetMonth) %>
+<a href="javascript:;"
+	data-year="<%=nextMonth.getYear()%>" data-month="<%=nextMonth.getMonthValue()%>">&gt;&gt;&gt;</a>
+</h4>
 <table>
 	<thead>
 		<tr>
@@ -106,17 +67,3 @@
 		%>
 	</tbody>
 </table>
-<script>
-	function clickHandler(event){
-		console.log(event);
-		let aTag = event.target;
-		console.log(aTag.dataset);
-		let year = aTag.dataset.year;
-		let month = aTag.dataset["month"];
-		calForm.year.value = year;
-		calForm["month"]["value"] = month;
-		calForm.requestSubmit();
-	}
-</script>
-</body>
-</html>

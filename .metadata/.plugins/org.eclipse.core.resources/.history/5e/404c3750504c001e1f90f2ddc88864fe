@@ -1,0 +1,49 @@
+package kr.or.ddit.vo;
+
+import java.time.YearMonth;
+import java.util.Locale;
+
+/**
+ * VO(Value Object), DTO(Data Transfer Object), Model, Bean(Java Bean 규약에 따른 객체)
+ *
+ */
+public class CalendarVO {
+	private Locale locale;
+	private YearMonth targetMonth;
+	private YearMonth beforeMonth;
+	private YearMonth nextMonth;
+	
+	public Locale getLocale() {
+		return locale;
+	}
+	public void setLocale(Locale locale) {
+		this.locale = locale;
+	}
+	public YearMonth getTargetMonth() {
+		return targetMonth;
+	}
+	public void setTargetMonth(YearMonth targetMonth) {
+		this.targetMonth = targetMonth;
+	}
+	public YearMonth getBeforeMonth() {
+		return beforeMonth;
+	}
+	public void setBeforeMonth(YearMonth beforeMonth) {
+		this.beforeMonth = beforeMonth;
+	}
+	public YearMonth getNextMonth() {
+		return nextMonth;
+	}
+	public void setNextMonth(YearMonth nextMonth) {
+		this.nextMonth = nextMonth;
+	}
+	
+	@Override
+	public String toString() {
+		return "CalendarVO [locale=" + locale + ", targetMonth=" + targetMonth + ", beforeMonth=" + beforeMonth
+				+ ", nextMonth=" + nextMonth + "]";
+	}
+	
+	
+	
+}

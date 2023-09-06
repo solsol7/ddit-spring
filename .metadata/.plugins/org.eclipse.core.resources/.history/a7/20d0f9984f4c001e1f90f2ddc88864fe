@@ -1,0 +1,9 @@
+package kr.or.ddit.vo;
+
+/**
+ * VO(Value Object), DTO(Data Transfer Object), Model, Bean(Java Bean 규약에 따른 객체)
+ *
+ */
+public class CalendarVO {
+
+}

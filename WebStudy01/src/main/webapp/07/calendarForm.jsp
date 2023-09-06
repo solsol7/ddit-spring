@@ -12,37 +12,13 @@
 <%@page import="java.time.DayOfWeek"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String yearParam = request.getParameter("year");
-	String monthParam = request.getParameter("month");
-	String localeParam = request.getParameter("locale");
-	
-	Locale locale = Optional.ofNullable(localeParam)
-		.map(lp->Locale.forLanguageTag(lp))
-		.orElse(request.getLocale());
 
-// 	Locale locale = request.getLocale();	//reqeust header(Accept-Language)
-	
-	int year = Optional.ofNullable(yearParam)
-					.filter((yp)->yp.matches("\\d{4}"))
-					.map((yp)->Integer.parseInt(yp))
-					.orElse(Year.now().getValue());
-
-	
-	YearMonth targetMonth = Optional.ofNullable(monthParam)
-								.filter((mp)->mp.matches("[1-9]|1[0-2]"))
-								.map((mp)->Integer.parseInt(mp))
-								.map((m)->YearMonth.of(year, m))
-								.orElse(YearMonth.now());
-	YearMonth beforeMonth = targetMonth.minusMonths(1);
-	YearMonth nextMonth = targetMonth.plusMonths(1);
-	
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <style>
 	.before,.after{
 		color: silver;
@@ -66,52 +42,86 @@
 </style>
 </head>
 <body>
-<h4>
-<a href="javascript:;" onclick="clickHandler(event);" data-year="<%=beforeMonth.getYear()%>" data-month="<%=beforeMonth.getMonthValue()%>">&lt;&lt;&lt;</a>
-<%=String.format(locale, "%1$tY, %1$tB", targetMonth) %>
-<a href="javascript:;" onclick="clickHandler(event);" data-year="<%=nextMonth.getYear()%>" data-month="<%=nextMonth.getMonthValue()%>">&gt;&gt;&gt;</a>
-</h4>
+
 <%!
-	final String OPTPTRN = "<option value='%s' %s>%s</option>";
+	final String OPTPTRN = "<option value='%s'>%s</option>";
 %>
-<form id="calForm" onchange="this.requestSubmit();" method="post">
-	<input type="number" name="year" value="<%=targetMonth.getYear()%>"/>
+<%
+	Locale locale = request.getLocale();
+%>
+<form id="calForm"  method="post"
+	action="<%=request.getContextPath() %>/calendar">
+	<input type="number" name="year"/>
 	<select name="month">
 	<%=
 		Stream.of(Month.values())
 			.map((m)->{
-				String selected = m.equals(targetMonth.getMonth())?"selected":"";
 				String display = m.getDisplayName(TextStyle.FULL, locale);
-				return String.format(OPTPTRN, m.getValue(), selected, display);
+				return String.format(OPTPTRN, m.getValue(), display);
 				})
 			.collect(Collectors.joining("\n"))
 	%>
 	</select>
-	<select name="locale" onchange="console.log(this);">
+	<select name="locale" >
 		<%=
          //Locale -> Option Tah String : map
          //element collection : collect(Collectors)         
             Stream.of(Locale.getAvailableLocales())
             .filter((l)->!l.getDisplayName(locale).isEmpty())
                 .map((l)->{
-                   String selected = l.equals(locale) ? "selected" : "";
-                   return String.format(OPTPTRN, l.toLanguageTag(), selected, l.getDisplayName(l));
+                   return String.format(OPTPTRN, l.toLanguageTag(), l.getDisplayName(l));
                 }).collect(Collectors.joining("\n"))
          %>
 	</select>
 </form>
+<div id="resultArea">
+
+</div>
 
 <script>
-	function clickHandler(event){
-		console.log(event);
-		let aTag = event.target;
-		console.log(aTag.dataset);
-		let year = aTag.dataset.year;
-		let month = aTag.dataset["month"];
+/* 	selector : ex) $('#calForm') - HtmlElement를 jQuery 객체로 wrapping 함.
+				Integer : wrapper class, int  -> new Integer(3)
+				원래 데이터를 감싸서 원래의 성질을 변경시킴 - adapter design pattern */
+// 	console.log(calForm);
+// 	console.log($(calForm));
+
+	$(":input[name]").on("change", function(event){
+		this.form.requestSubmit();
+	});
+	
+	$(calForm).on("submit", function(event){
+		event.preventDefault();
+		console.log(event.target);
+		console.log(this);
+		console.log($(this));
+		
+// 		동기 요청 -> 비동기 요청으로 전환
+		let url = this.action;
+		let method = this.method;
+		let data = $(this).serialize();
+// 		ex) year=2023&month=8&locale=ko-KR
+		let settings = {
+			url : url,
+			method : method,
+			data : data,
+			dataType : "html",
+			success : function(resp){
+				$(resultArea).html(resp);
+			}
+		};
+		$.ajax(settings);
+	});
+	
+	$("#resultArea").on("click", "a", function(event){
+		console.log(" a tag click !!! ");
+		let year = $(this).data("year");
+		let month = $(this).data("month");
+		
 		calForm.year.value = year;
 		calForm["month"]["value"] = month;
-		calForm.requestSubmit();
-	}
+		$(calForm).submit();
+	});
+	
 </script>
 </body>
 </html>
