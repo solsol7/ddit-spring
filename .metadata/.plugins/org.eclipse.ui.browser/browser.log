@@ -398,3 +398,14 @@
 9월 06, 2023 10:21:15.313 [8204:4692:0906/102115.312:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.17 s for first_image_paint 0.154 s
 9월 06, 2023 10:21:15.494 [8204:4692:0906/102115.494:ERROR:page_load_metrics_update_dispatcher.cc(178)] Invalid first_paint 0.17 s for first_image_paint 0.154 s
 9월 06, 2023 10:34:30.962 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+9월 07, 2023 09:51:05.435 NEW SESSION
+9월 07, 2023 09:51:05.436 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 07, 2023 10:01:59.436 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 07, 2023 10:37:08.912 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 07, 2023 10:37:27.334 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 07, 2023 10:37:41.453 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 07, 2023 11:20:44.981 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 07, 2023 11:21:00.337 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 07, 2023 11:25:44.465 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 07, 2023 11:40:46.464 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.

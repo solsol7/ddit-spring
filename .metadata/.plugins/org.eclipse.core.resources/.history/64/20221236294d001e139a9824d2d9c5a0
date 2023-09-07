@@ -1,0 +1,23 @@
+package kr.or.ddit.servlet04;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/08/serverTime")
+public class ServerTimeServlet extends HttpServlet{
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String accept = req.getHeader("accept");
+		
+		LocalDateTime now = LocalDateTime.now();
+		resp.setContentType("text/html; charset=utf-8");
+		resp.setIntHeader("Refresh", 1);
+		resp.getWriter().print(now);
+	}
+}
