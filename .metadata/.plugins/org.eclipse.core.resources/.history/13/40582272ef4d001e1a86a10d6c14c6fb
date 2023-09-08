@@ -1,0 +1,19 @@
+package kr.or.ddit.jackson;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.BeforeClass;
+import org.junit.jupiter.api.Test;
+
+class ObjectMapperTest {
+	@BeforeClass
+	static void setUp() {
+		System.out.println("before class");
+	}
+	
+	@Test
+	void test() {
+		System.out.println("======================");
+	}
+
+}

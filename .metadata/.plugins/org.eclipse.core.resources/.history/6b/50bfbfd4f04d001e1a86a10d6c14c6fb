@@ -1,0 +1,42 @@
+package kr.or.ddit.jackson;
+
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+class ObjectMapperTest {
+	
+	static ObjectMapper mapper;
+	
+	@BeforeAll
+	static void setUp() {
+		System.out.println("before class");
+		mapper = new ObjectMapper();
+	}
+	
+	@Test
+	void marshallingtest() throws JsonProcessingException {
+		System.out.println("==========Java to JSON============");
+		Map<String, Object> target = new HashMap<String, Object>();
+		target.put("key1","value1");
+		target.put("key2", 23232);
+		target.put("key3", false);
+		target.put("key4", new Date());
+		
+		String json = mapper.writeValueAsString(target);
+		System.out.println(json);
+	}
+
+	@Test
+	void unMarshallingtest() {
+		System.out.println("==========JSON to Java============");
+	}
+
+}
