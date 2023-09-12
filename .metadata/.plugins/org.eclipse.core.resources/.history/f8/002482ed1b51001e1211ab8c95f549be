@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<jsp:include page="/includee/preScript.jsp"/>
+<%
+String authId = (String)session.getAttribute("authId");
+if(authId!=null){
+%>
+<script>
+	alert("<%=authId%>님 로그인 성공")
+</script>
+<%
+}
+%>
+
+</head>
+<body>
+<h4>웰컴페이지 : <%=request.getAttribute("title") %></h4>
+
+</body>
+</html>

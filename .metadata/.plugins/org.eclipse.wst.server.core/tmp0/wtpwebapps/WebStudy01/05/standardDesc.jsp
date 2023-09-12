@@ -1,16 +1,7 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>05/standardDesc.jsp</title>
-<style type="text/css">
-/* 	comment3 */
-</style>
-</head>
-<body>
+
 <h4>JSP 스펙과 Container</h4>
 <pre>
 	JSP(Jakarta Server Page) : 자바와 서블릿 스펙을 기반으로 한 템플릿 엔진
@@ -50,5 +41,3 @@
 <script type="text/javascript">
 // 	comment2
 </script>
-</body>
-</html>
