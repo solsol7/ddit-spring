@@ -1,0 +1,32 @@
+package kr.or.ddit.login.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebServlet("/login/logout.do")
+public class LogoutControllerServlet extends HttpServlet{
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		//세션 받아오기
+		HttpSession session = req.getSession();
+		System.out.println("전"+session.getAttribute("authId"));
+		
+		// 1. 세션 스코프 안의 속성 지워야함 - authId
+		session.removeAttribute("authId");
+		System.out.println("후"+session.getAttribute("authId"));
+		
+		
+		// 2. 세션 만료
+		
+		// 3. 만료된 이후의 결과 클라이언트에 보여주기 - welcome페이지로 보내기(redirect) 
+		
+		
+	}
+}

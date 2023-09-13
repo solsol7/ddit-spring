@@ -429,3 +429,8 @@
 9월 12, 2023 11:33:37.764 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
 9월 12, 2023 12:18:34.972 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
 9월 12, 2023 12:39:09.513 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+9월 13, 2023 09:44:57.332 NEW SESSION
+9월 13, 2023 09:44:57.332 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 13, 2023 11:43:52.954 [7420:10880:0913/114352.954:ERROR:navigation_entry_remover.cc(221)] RemoveNavigationEntries(), deleted_rows count = 0, is_from_expiration = 0, deletion_reason = 1
+9월 13, 2023 12:18:26.920 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
