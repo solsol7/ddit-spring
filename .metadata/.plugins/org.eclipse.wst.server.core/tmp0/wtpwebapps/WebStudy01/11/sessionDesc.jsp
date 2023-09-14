@@ -1,3 +1,4 @@
+
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -29,9 +30,10 @@
 		 세션 생성 시점 : <%=new Date(session.getCreationTime()) %>
 		 세션 아이디 : <%=session.getId() %>
 		 현재 세션 내에서 발생한 마지막 요청 시점 : <%=new Date(session.getLastAccessedTime()) %>
-		 1. Cookie
+		 1. Cookie : request/response의 헤더를 통해 세션 아이디를 공유하는 방식
 		 2. URL : <a href="sessionDesc.jsp;jsessionid=<%=session.getId()%>">세션 파라미터를 통한 세션 유지</a>
-		 3. SSL
+		 		  request line을 통해 세션 아이디를 공유하는 방식(취약성 존재).
+		 3. SSL(Secure Socket Layer) : 암호화 채널을 이용한 세션 아이디 공유(https)
 </pre>
 </body>
 </html>

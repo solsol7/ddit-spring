@@ -434,3 +434,16 @@
 9월 13, 2023 09:44:57.332 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
 9월 13, 2023 11:43:52.954 [7420:10880:0913/114352.954:ERROR:navigation_entry_remover.cc(221)] RemoveNavigationEntries(), deleted_rows count = 0, is_from_expiration = 0, deletion_reason = 1
 9월 13, 2023 12:18:26.920 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+9월 14, 2023 08:48:56.906 NEW SESSION
+9월 14, 2023 08:48:56.906 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 09:39:06.806 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 12:37:27.704 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 14, 2023 14:26:03.555 [10268:2772:0914/142603.554:ERROR:account_info_fetcher.cc(62)] OnGetTokenFailure: Request canceled.
+9월 14, 2023 14:26:21.764 [10268:2772:0914/142621.764:ERROR:navigation_entry_remover.cc(221)] RemoveNavigationEntries(), deleted_rows count = 0, is_from_expiration = 0, deletion_reason = 1
+9월 14, 2023 14:26:31.343 [10268:2772:0914/142631.343:ERROR:device_event_log_impl.cc(222)] [14:26:31.343] Bluetooth: bluetooth_adapter_winrt.cc:1058 Getting Default Adapter failed.
+9월 14, 2023 14:26:53.497 [10268:2772:0914/142653.496:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+9월 14, 2023 14:30:20.873 [10268:2772:0914/143020.873:ERROR:interface_endpoint_client.cc(702)] Message 0 rejected by interface blink.mojom.WidgetHost
+
+9월 14, 2023 15:36:18.429 NEW SESSION
+9월 14, 2023 15:36:18.429 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
