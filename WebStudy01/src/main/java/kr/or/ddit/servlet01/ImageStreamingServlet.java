@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,6 +48,13 @@ public class ImageStreamingServlet extends HttpServlet {
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
+		
+		// 쿠키 생성
+		Cookie imgCookie = new Cookie("imgCookie", imageName);
+		imgCookie.setMaxAge(60*60*24*7);
+		imgCookie.setPath(request.getContextPath());
+		response.addCookie(imgCookie);
+		
 		
 		File imageFile = new File(imageFolder,imageName);
 		

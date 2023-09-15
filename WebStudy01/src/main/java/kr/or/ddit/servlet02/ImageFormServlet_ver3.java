@@ -74,5 +74,3 @@ public class ImageFormServlet_ver3 extends HttpServlet{
 		
 	}
 }
-
-

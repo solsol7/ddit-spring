@@ -1,3 +1,5 @@
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.Optional"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,13 +18,20 @@ if(message!=null && !message.trim().isEmpty()){
 <%
 }
 %>
+<%
+	Cookie[] cookies = request.getCookies();
+	Optional.ofNullable(cookies).map((ck)->{
+		Arrays.stream(ck).filter((c)->c.getName().equals("memId"))
+	})
+%>
 </script>
 </head>
 <body>
 <form method="post" action="<%=request.getContextPath() %>/login/loginProcess.do" enctype="application/x-www-form-urlencoded">
 	<ul>
 		<li>
-			아이디 : <input type="text" name="memId" />
+			아이디 : <input type="text" name="memId"/>
+			<input type="checkbox" name="idSave"  value="saveId"/>아이디저장하기
 		</li>
 		<li>
 			비밀번호 : <input type="text" name="memPass" />

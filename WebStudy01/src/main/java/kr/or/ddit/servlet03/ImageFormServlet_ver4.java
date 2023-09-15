@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.text.MessageFormat;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,6 +14,7 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,6 +56,19 @@ public class ImageFormServlet_ver4 extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Cookie[] cookies =  req.getCookies();
+		String imgCookieValue = "";
+		if(cookies!=null) {
+			for(Cookie tmp : cookies) {
+				if("imgCookie".equals(tmp.getName())) {
+					imgCookieValue = URLDecoder.decode(tmp.getValue(), "UTF-8");
+					break;
+				}
+			}
+		}
+		
+		req.setAttribute("imgCookieValue", imgCookieValue);
+		
 		String[] imageFileNames = imageFolder.list((d,n)->
 								Optional.ofNullable(application.getMimeType(n))
 									.orElse("").startsWith("image/"));

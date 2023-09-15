@@ -1,8 +1,10 @@
 package kr.or.ddit.bts.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -35,6 +37,17 @@ public class BtsFormControllerServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String savedMemCode = Optional.ofNullable(req.getCookies())
+										.map((cs)->{
+											return Arrays.stream(cs)
+													.filter((c)->"btsCookie".equals(c.getName()))
+													.findFirst()
+													.map(fc->fc.getValue())
+													.orElse(""); // btsCookie 가 없는 경우
+										}).orElse("");	// cookie가 하나도 없는 경우
+		
+		req.setAttribute("savedMemCode", savedMemCode);
 		
 		String goPage = "/WEB-INF/views/bts/btsForm.jsp";
 		
