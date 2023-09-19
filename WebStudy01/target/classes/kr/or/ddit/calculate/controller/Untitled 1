@@ -1,0 +1,31 @@
+case 1 : 순수한 파라미터로 처리 (설계x)
+case 2 : enum + 동기에서 비동기 요청으로
+
+case 3 : model을 modeling 함.
+   (VO javaBean 규약 적용)
+controller에서 만들어진 모델을 뷰로 전달할 때도 객체 형태로
+=> 여기까지는 파라미터만 처리
+
+case4 : json content를 payload 형태로 전송
+   (이 컨텐트는 request conent)
+   (Content-type헤더의 사용)-> 이 헤더는 요청헤더 사용 
+ *** case4는 파라미터 x!!!
+=> 여기까지는 돌아오는 응답데이터가 다 문자열이었음
+
+case 5 : json resposne content 전송
+   (Accept 요청 헤더)
+   (Content type이라는 응답헤더 사용)
+   -> 이 응답데이터 만들때 model2
+      -> JsonVeiwServlet을 이용한 model2구조
+case 6: json request content 를 전송하고, json response content 를 받도록
+
+보내는 파라미터 x
+제이슨 페이로드로 보내고
+응답 을 제이슨으로 받음
+
+case 7 : request content type을 클라이언트가 선택
+   응답은 json content 로 받도록.
+   => 파라미터로 받을건지 페이로드로 받을건지 직접 선택하도록
+case8 : request content type(Content-type_을 클라이언트가 선택
+response contenttype(accept)를 클라이언트가 선택
+

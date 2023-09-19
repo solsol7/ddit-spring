@@ -1,9 +1,0 @@
-package kr.or.ddit.common.controller;
-
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-
-@WebServlet("/index.do")
-public class IndexControllerServlet extends HttpServlet{
-
-}

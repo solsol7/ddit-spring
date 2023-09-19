@@ -1,9 +1,0 @@
-package kr.or.ddit.login.controller;
-
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-
-@WebServlet("/login/logout.do")
-public class LogoutControllerServlet extends HttpServlet{
-
-}
