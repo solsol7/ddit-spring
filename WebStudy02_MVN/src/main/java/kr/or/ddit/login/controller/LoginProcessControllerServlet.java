@@ -11,92 +11,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
+
+import kr.or.ddit.login.service.AuthenticateService;
+import kr.or.ddit.login.service.AuthenticateServiceImpl;
+import kr.or.ddit.vo.MemberVO2;
+
 @WebServlet("/login/loginProcess.do")
 public class LoginProcessControllerServlet extends HttpServlet {
 	
-	private boolean validate(String memId, String memPass) {
+	private AuthenticateService service = new AuthenticateServiceImpl();
+	
+	private boolean validate(MemberVO2 member) {
 		boolean valid = true;
-		valid &= memId != null && !memId.trim().isEmpty();
-		valid &= memPass != null && !memPass.trim().isEmpty();
+		
+		valid &= StringUtils.isNotBlank(member.getMemId());
+		valid &= StringUtils.isNotBlank(member.getMemPass());
 		return valid;
 	}
-	
-	private boolean authenticated(String memId, String memPass) {
-		return memId.equals(memPass);
-	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		req.setCharacterEncoding("UTF-8");
 
-		String memId = req.getParameter("memId");
-		String memPass = req.getParameter("memPass");
-		String idSave = req.getParameter("idSave");
-		
-//		3. 요청 검증
-		boolean valid = validate(memId, memPass);
-		
-		Cookie idCookie = null;
-		HttpSession session = req.getSession();
-		
-		int sc = 200;
-		String goPage = null;
-		if(valid) {
-//		4-1. 검증 통과
-//			5-1. 인증 여부 판단
-			boolean authenticated = authenticated(memId, memPass);
-			if(authenticated) {
-				
-				// 체크박스 체크여부 확인
-				if(idSave==null || idSave.isEmpty()) {
-					// 체크가 안되어있으면...
-					Cookie[] cookies = req.getCookies();
-					// 있던 쿠키 삭제
-					for(Cookie tmp : cookies) {
-						if(tmp.getName().equals("memId")) {
-							tmp.setMaxAge(0);
-							break;
-						}
-					}
-				}else {
-					//체크가 되어있으면...
-					idCookie = new Cookie("memId",memId);
-					idCookie.setPath(req.getContextPath());
-					idCookie.setMaxAge(60*60*24*7);
-					resp.addCookie(idCookie);
-				}
-//				6-1. 인증 성공
-//					- 웰컴페이지 이동
-				session.setAttribute("authId", memId);
-				goPage = "redirect:/";
-			}else {
-//				6-2. 인증 실패
-//					- loginForm으로 이동
-				goPage = "redirect:/login/loginForm.jsp";
-				session.setAttribute("message", "아이디나 비밀번호 오류");
-			} // if(authenticated) end
-			
-		}else {	
-//		4-2. 검증 불통과
-//			5-2. Bad request 전송
-			sc = HttpServletResponse.SC_BAD_REQUEST;
-		} // if(valid) end
-		
-		if(sc == 200) {
-			// goPage로 이동
-			if(goPage.startsWith("redirect:")) {
-				
-				String location = req.getContextPath() + goPage.substring("redirect:".length());
-				resp.sendRedirect(location);
-			}else {
-				req.getRequestDispatcher(goPage).forward(req, resp);
-			}
-		}else {
-			resp.sendError(sc);
-		}
-		
-	/* 쿠키 사용X
 		// 1. 아이디나 비밀번호가 누락된 경우, Bad Request 전송
 		// 2. 인증 성공 : 웰컴 페이지로 이동 -> "a001" 님 로그인 성공이라는 메시지를 웰컴페이지에 alert창으로 출력.
 		// 3. 인증 실패 : 로그인 폼으로 이동 -> "아이디나 비밀번호 오류" 라는 메시지를 로그인 폼에서 alert 창으로 출력.
@@ -108,15 +44,19 @@ public class LoginProcessControllerServlet extends HttpServlet {
 		String memId = req.getParameter("memId");
 		String memPass = req.getParameter("memPass");
 		
+		MemberVO2 inputData = new MemberVO2();
+		inputData.setMemId(memId);
+		inputData.setMemPass(memPass);
+		
 //		3. 요청 검증
-		boolean valid = validate(memId, memPass);
+		boolean valid = validate(inputData);
 		HttpSession session = req.getSession();
 		int sc = 200;
 		String goPage = null;
 		if(valid) {
 //		4-1. 검증 통과
 //			5-1. 인증 여부 판단
-			boolean authenticated = authenticated(memId, memPass);
+			boolean authenticated = service.authenticate(inputData);
 			if(authenticated) {
 //				6-1. 인증 성공
 //					- 웰컴페이지 이동
@@ -147,7 +87,7 @@ public class LoginProcessControllerServlet extends HttpServlet {
 		}else {
 			resp.sendError(sc);
 		}
-		*/
+
 		
 		
 		

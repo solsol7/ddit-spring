@@ -70,5 +70,4 @@ class ObjectMapperTest {
 		Map<String, Object> target = mapper.readValue(fis, HashMap.class);
 		System.out.println(target);
 	}
-
 }
