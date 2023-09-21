@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="auth"/>
+		<item key="selection" value=""/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
-		<item key="isRegEx" value="false"/>
+		<item key="isRegEx" value="true"/>
 		<list key="findhistory">
+			<item value="CLASS_NAME_FADE"/>
+			<item value="classList"/>
+			<item value="launch"/>
+			<item value=":v\d"/>
+			<item value=":"/>
 			<item value="auth"/>
 			<item value="param"/>
 			<item value="war-plugin"/>
@@ -20,10 +25,11 @@
 			<item value="jpg"/>
 		</list>
 		<list key="replacehistory">
+			<item value="\?"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="616"/>
+		<item key="DIALOG_X_ORIGIN" value="644"/>
 		<item key="DIALOG_Y_ORIGIN" value="700"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>

@@ -24,14 +24,14 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public boolean modifyAddress(AddressVO adrsVO) {
-		// TODO Auto-generated method stub
-		return false;
+		int cnt = dao.updateAddress(adrsVO);
+		return cnt>=1;
 	}
 
 	@Override
 	public boolean removeAddress(int adrsNo) {
-		// TODO Auto-generated method stub
-		return false;
+		int cnt = dao.deleteAddress(adrsNo);
+		return cnt>=1;
 	}
 
 }

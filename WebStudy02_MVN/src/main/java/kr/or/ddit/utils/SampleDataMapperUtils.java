@@ -15,11 +15,8 @@ import kr.or.ddit.vo.AddressVO;
 public class SampleDataMapperUtils {
 	public static String snakeToCamel(String columnName) {
 		String propName = WordUtils.capitalizeFully(columnName, '_');
-		System.out.println(propName);
 		propName = StringUtils.replace(propName, "_", "");
-		System.out.println(propName);
 		propName = WordUtils.uncapitalize(propName);
-		System.out.println(propName);
 		
 		return propName;
 	}

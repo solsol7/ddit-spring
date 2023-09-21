@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import org.apache.commons.dbcp2.BasicDataSource;
+
 /**
  * A a1 = new A();
  * A a2 = new A();
@@ -19,9 +21,9 @@ import java.util.Properties;
  *
  */
 public class ConnectionFactory {
-	private static String url;
-	private static String user;
-	private static String password;
+	
+	private static BasicDataSource dataSource;
+	
 	static {
 		Properties dbInfo = new Properties();
 //		classpath resource 형태 자원 읽기
@@ -31,11 +33,28 @@ public class ConnectionFactory {
 		) {
 			dbInfo.load(is);
 			String driverClassName = dbInfo.getProperty("driverClassName");
-			Class.forName(driverClassName);
-			url = dbInfo.getProperty("url");
-			user = dbInfo.getProperty("user");
-			password = dbInfo.getProperty("password");
-		} catch (ClassNotFoundException | IOException e) {
+//			Class.forName(driverClassName);
+			String url = dbInfo.getProperty("url");
+			String user = dbInfo.getProperty("user");
+			String password = dbInfo.getProperty("password");
+			
+			dataSource = new BasicDataSource();
+			dataSource.setDriverClassName(driverClassName);
+			dataSource.setUrl(url);
+			dataSource.setUsername(user);
+			dataSource.setPassword(password);
+			
+			int initialSize = Integer.parseInt(dbInfo.getProperty("initialSize"));
+			int maxIdle = Integer.parseInt(dbInfo.getProperty("maxIdle"));
+			int maxTotal = Integer.parseInt(dbInfo.getProperty("maxTotal"));
+			long maxWait = Long.parseLong(dbInfo.getProperty("maxWait"));
+			
+			dataSource.setInitialSize(initialSize);
+			dataSource.setMaxTotal(maxTotal);
+			dataSource.setMaxWaitMillis(maxWait);
+			dataSource.setMaxIdle(maxIdle);
+			
+		} catch (IOException e) {
 			// unchecked 처리하지않아도 컴파일에러가 나지 않음
 			// checked 처리하지 않으면 컴파일에러남
 			// checked를 unchecked로 바꿔서 던져줘야함
@@ -45,6 +64,6 @@ public class ConnectionFactory {
 			//<-> static 코드블럭 - 인스턴스 생성 전 실행(1번)
 	
 	public static Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(url, user, password);
+		return dataSource.getConnection();
 	}
 }

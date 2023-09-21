@@ -8,12 +8,12 @@ import java.sql.Statement;
 
 import kr.or.ddit.common.exception.PersistenceException;
 import kr.or.ddit.db.ConnectionFactory;
-import kr.or.ddit.vo.MemberVO2;
+import kr.or.ddit.vo.MemberVO;
 
 public class MemberDAOImpl implements MemberDAO {
 
 	@Override
-	public MemberVO2 selectMemberForAuth(MemberVO2 inputData) {
+	public MemberVO selectMemberForAuth(MemberVO inputData) {
 		
 		String memId = inputData.getMemId();
 		String memPass = inputData.getMemPass();
@@ -34,9 +34,9 @@ public class MemberDAOImpl implements MemberDAO {
 			pstmt.setString(2, memPass);
 			
 			ResultSet rs = pstmt.executeQuery();
-			MemberVO2 vo = null;
+			MemberVO vo = null;
 			if(rs.next()) {
-				vo = new MemberVO2();
+				vo = new MemberVO();
 				vo.setMemId(rs.getString("MEM_ID"));
 				vo.setMemPass(rs.getString("MEM_PASS"));
 				vo.setMemName(rs.getString("MEM_NAME"));

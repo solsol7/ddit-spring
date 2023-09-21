@@ -15,14 +15,14 @@ import org.apache.commons.lang3.StringUtils;
 
 import kr.or.ddit.login.service.AuthenticateService;
 import kr.or.ddit.login.service.AuthenticateServiceImpl;
-import kr.or.ddit.vo.MemberVO2;
+import kr.or.ddit.vo.MemberVO;
 
 @WebServlet("/login/loginProcess.do")
 public class LoginProcessControllerServlet extends HttpServlet {
 	
 	private AuthenticateService service = new AuthenticateServiceImpl();
 	
-	private boolean validate(MemberVO2 member) {
+	private boolean validate(MemberVO member) {
 		boolean valid = true;
 		
 		valid &= StringUtils.isNotBlank(member.getMemId());
@@ -44,7 +44,7 @@ public class LoginProcessControllerServlet extends HttpServlet {
 		String memId = req.getParameter("memId");
 		String memPass = req.getParameter("memPass");
 		
-		MemberVO2 inputData = new MemberVO2();
+		MemberVO inputData = new MemberVO();
 		inputData.setMemId(memId);
 		inputData.setMemPass(memPass);
 		
