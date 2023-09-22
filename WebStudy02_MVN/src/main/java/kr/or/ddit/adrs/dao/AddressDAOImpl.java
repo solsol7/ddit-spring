@@ -36,26 +36,24 @@ public class AddressDAOImpl implements AddressDAO {
 		sql.append(" 	    adrs_no, mem_id, adrs_name,    ");
 		sql.append(" 	    adrs_hp, adrs_add              ");
 		sql.append(" 	) VALUES (                         ");
-		sql.append(" 	    ?,                             ");
-		sql.append(" 	    ?,                             ");
-		sql.append(" 	    ?,                             ");
-		sql.append(" 	    ?,                             ");
-		sql.append(" 	    ?                              ");
+		sql.append(" 	    #{adrsNo},                             ");
+		sql.append(" 	    #{memId},                             ");
+		sql.append(" 	    #{adrsName},                             ");
+		sql.append(" 	    #{adrsHp},                             ");
+		sql.append(" 	    #{adrsAdd}                              ");
 		sql.append(" 	)                                 ");
 		try(
 			Connection conn = ConnectionFactory.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 		) {
 			int adrsNo = generateAdrsNo(conn);
 			adrsVO.setAdrsNo(adrsNo);
-			int idx = 0;
-			pstmt.setInt(++idx, adrsVO.getAdrsNo());
-			pstmt.setString(++idx, adrsVO.getMemId());
-			pstmt.setString(++idx, adrsVO.getAdrsName());
-			pstmt.setString(++idx, adrsVO.getAdrsHp());
-			pstmt.setString(++idx, adrsVO.getAdrsAdd());
+			PreparedStatement pstmt = SampleDataMapperUtils.generatePreparedStatement(conn, sql.toString(), adrsVO);
+
+			int rowcnt = pstmt.executeUpdate();
 			
-			return pstmt.executeUpdate();
+			pstmt.close();
+			
+			return rowcnt;
 			
 		} catch (SQLException e) {
 			throw new PersistenceException(e);

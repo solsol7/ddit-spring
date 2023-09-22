@@ -559,3 +559,26 @@
 9월 21, 2023 11:37:36.955 NEW SESSION
 9월 21, 2023 11:37:36.955 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
 9월 21, 2023 12:05:21.848 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+9월 22, 2023 08:46:37.710 NEW SESSION
+9월 22, 2023 08:46:37.710 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 08:52:17.230 [7204:4580:0922/085217.230:ERROR:device_event_log_impl.cc(222)] [08:52:17.231] Bluetooth: bluetooth_adapter_winrt.cc:1058 Getting Default Adapter failed.
+9월 22, 2023 12:05:18.596 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 12:06:02.504 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 12:06:53.785 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 12:10:02.662 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 12:25:45.757 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 13:16:46.764 [12824:6300:0922/131646.764:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+9월 22, 2023 13:47:28.861 [12824:6300:0922/134725.242:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
+9월 22, 2023 15:34:16.262 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 15:48:30.585 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 17:07:30.502 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 17:08:08.970 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 17:12:48.933 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 17:13:43.32 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 17:14:13.186 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 17:14:45.24 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 17:27:32.300 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 17:51:24.215 [12664:6480:0922/175124.215:ERROR:get_updates_processor.cc(261)] PostClientToServerMessage() failed during GetUpdates with error 2
+9월 22, 2023 17:52:29.304 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 22, 2023 18:01:13.381 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.

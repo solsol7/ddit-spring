@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.adrs.dao.AddressDAO">
+<!-- 1. Mybatis Mapper 파일 생성
+2. DAO 인터페이스의 qualified name을 mapper xml namespace로 반영하여, 1:1 구조 형성
+3. 등록된 쿼리 아이디에 구현 메소드의 이름을 반영함(쿼리 설정은 메소드 시그니처를 따름)
+4. DAO 구현체
+	1) SqlSessionFactory 확보
+	2) SqlSession poen
+	3. selectXXX, insert/update/delete(쿼리 아이디, ParamType에 맞는 인자 전달)
+	 	=>insert/update/delete 트랜잭션 종료(commit);
+	4) sqlSession close
+ -->
+	<insert id="insertAddress" parameterType="AddressVO">
+	<selectKey order="BEFORE" resultType="int" keyProperty="adrsNo">
+			SELECT NVL(MAX(ADRS_NO), 0) + 1
+			FROM ADDRESSBOOK
+		</selectKey>
+		INSERT INTO addressbook (
+		    ADRS_NO, MEM_ID, ADRS_NAME,
+		    ADRS_HP, ADRS_ADD 
+		) VALUES(
+		    #{adrsNo},
+		    #{memId},    
+		    #{adrsName},  
+		    #{adrsHp},  
+		    #{adrsAdd}   
+		) 
+		
+<!--  INSERT INTO addressbook (
+		    ADRS_NO, MEM_ID, ADRS_NAME,
+		    ADRS_HP, ADRS_ADD 
+		)
+		    SELECT NVL(MAX(ADRS_NO), 0) + 1,
+		    #{memId},    
+		    #{adrsName},  
+		    #{adrsHp},  
+		    #{adrsAdd}
+			FROM ADDRESSBOOK -->
+	</insert>
+
+	<select id="selectAddressList" parameterType="String" resultType="AddressVO">
+		 SELECT ADRS_NO, ADRS_NAME, ADRS_HP, ADRS_ADD
+		 FROM ADDRESSBOOK
+		 WHERE MEM_ID= #{memId}
+	</select>
+	
+	<delete id="deleteAddress" parameterType="int">
+	 	DELETE FROM ADDRESSBOOK WHERE ADRS_NO = #{code}
+	</delete>
+	
+	<update id="updateAddress" parameterType="AddressVO">
+		UPDATE ADDRESSBOOK	
+		SET ADRS_NAME=#{adrsName}, ADRS_HP=#{adrsHp}, ADRS_ADD=#{adrsAdd} 
+		WHERE ADRS_NO=#{adrsNo}
+	</update>
+</mapper>

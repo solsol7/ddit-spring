@@ -3,4 +3,5 @@
   <module moduleId="org.eclipse.jst.jee.server:WebStudy02_MVN" serverId="Tomcat v8.5 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:WebStudy01" serverId="Tomcat v8.5 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:homework" serverId="Tomcat v8.5 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:WebStudy03_Mybatis" serverId="Tomcat v8.5 Server at localhost"/>
 </modules>
