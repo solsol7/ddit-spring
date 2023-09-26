@@ -5,25 +5,33 @@ import java.util.List;
 import kr.or.ddit.common.enumpkg.ServiceResult;
 import kr.or.ddit.login.service.AuthenticateService;
 import kr.or.ddit.login.service.AuthenticateServiceImpl;
+import kr.or.ddit.member.UserNotFoundException;
 import kr.or.ddit.member.dao.MemberDAO;
 import kr.or.ddit.member.dao.MemberDAOImpl;
 import kr.or.ddit.vo.MemberVO;
 
-public class MemberServiceImpl implements MemberService{
-	
+public class MemberServiceImpl implements MemberService {
 	private MemberDAO dao = new MemberDAOImpl();
 	private AuthenticateService authService = new AuthenticateServiceImpl();
 
 	@Override
 	public ServiceResult createMember(MemberVO member) {
-		// TODO Auto-generated method stub
-		return null;
+		ServiceResult result = null;
+		if(dao.selectMember(member.getMemId())==null) {
+			int rowcnt = dao.insertMember(member);
+			result = rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+		}else {
+			result = ServiceResult.PKDUPLICATED;
+		}
+		return result;
 	}
 
 	@Override
 	public MemberVO retrieveMember(String memId) {
-		// TODO Auto-generated method stub
-		return null;
+		MemberVO member = dao.selectMember(memId);
+		if(member==null)
+			throw new UserNotFoundException(memId);
+		return member;
 	}
 
 	@Override
@@ -33,7 +41,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public ServiceResult modifyMember(MemberVO member) {
-		boolean authenticated = authService.authenticate(member);
+		boolean authenticated =authService.authenticate(member);
 		ServiceResult result = null;
 		if(authenticated) {
 			int rowcnt = dao.updateMember(member);
@@ -41,7 +49,7 @@ public class MemberServiceImpl implements MemberService{
 		}else {
 			result = ServiceResult.INVALIDPASSWORD;
 		}
-		return null;
+		return result;
 	}
 
 	@Override
@@ -51,3 +59,16 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

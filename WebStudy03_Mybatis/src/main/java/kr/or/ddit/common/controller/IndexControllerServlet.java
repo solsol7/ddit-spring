@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.or.ddit.mvc.ViewResolverComposite;
+
 @WebServlet("/index.do")
 public class IndexControllerServlet extends HttpServlet{
 	@Override
@@ -16,7 +18,17 @@ public class IndexControllerServlet extends HttpServlet{
 		
 		req.setAttribute("title", title);
 		
-		String viewName = "/WEB-INF/views/index.jsp";
-		req.getRequestDispatcher(viewName).forward(req, resp);
+		String viewName = "index";
+		new ViewResolverComposite().resolveView(viewName, req, resp);
 	}
+	/*
+    String goPage = "redirect:/";
+    
+    if(goPage.startsWith("redirect")) { //redirection
+       String location = req.getContextPath() + goPage.substring("redirect:".length());
+       resp.sendRedirect(location); //goPage 에서 redirect 떼고 contextpath 붙여줘야함
+    }else { //dispatch
+       req.getRequestDispatcher(goPage).forward(req, resp);
+    }
+    */
 }

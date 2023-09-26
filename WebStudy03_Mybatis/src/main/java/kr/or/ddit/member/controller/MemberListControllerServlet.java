@@ -11,35 +11,50 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
+import kr.or.ddit.mvc.ViewResolverComposite;
 import kr.or.ddit.vo.MemberVO;
 
 /**
- * 목록 조회 : /member.memberList.do
- * 마이페이지 : /mypage
- * 정보 수정 : /member/memberUpdate.do
- * 탈퇴 : /member/memberDelete.do
- * 가입 : /member/memberInsert.do
+ *   목록 조회 : /member/memberList.do
+ *   마이페이지 : /mypage
+ *   정보 수정 : /member/memberUpdate.do
+ *   탈퇴 : /member/memberDelete.do
+ *   가입 : /member/memberInsert.do
+ *   
+ *   상세조회 : /member/memberView.do?who=a001
  *
  */
-@WebServlet("/member.memberList.do")
+@WebServlet("/member/memberList.do")
 public class MemberListControllerServlet extends HttpServlet{
 	private MemberService service = new MemberServiceImpl();
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		List<MemberVO> memberList = service.retrieveMemberList();
+		req.setAttribute("memberList", memberList);
 		
-		List<MemberVO> list = service.retrieveMemberList();
+		String viewName = "member/memberList";
 		
-		req.setAttribute("memberList", list);
-		
-		String goPage = "/WEB-INF/views/member/memberList.jsp";
-		
-		if(goPage.startsWith("redirect:")) {
-			
-			String location = req.getContextPath() + goPage.substring("redirect:".length());
-			resp.sendRedirect(location);
-		}else {
-			req.getRequestDispatcher(goPage).forward(req, resp);
-		}
+		new ViewResolverComposite().resolveView(viewName, req, resp);
 	}
+		
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

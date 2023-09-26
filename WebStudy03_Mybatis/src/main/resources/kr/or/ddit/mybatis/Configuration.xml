@@ -10,7 +10,7 @@
 	</typeAliases>
 	<environments default="dev">
 		<environment id="dev">
-			<transactionManager type="JDBC"/>
+			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="${driverClassName}"/>
 				<property name="url" value="${url}"/>
@@ -25,5 +25,19 @@
 	<mappers>
 		<mapper resource="kr/or/ddit/mybatis/mapper/Member.xml"/>
 		<mapper resource="kr/or/ddit/mybatis/mapper/Address.xml"/>
+		<mapper resource="kr/or/ddit/mybatis/mapper/DBProps.xml"/>
 	</mappers>
 </configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+

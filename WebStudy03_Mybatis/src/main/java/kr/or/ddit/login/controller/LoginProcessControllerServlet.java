@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import kr.or.ddit.login.service.AuthenticateService;
 import kr.or.ddit.login.service.AuthenticateServiceImpl;
+import kr.or.ddit.mvc.ViewResolverComposite;
 import kr.or.ddit.vo.MemberVO;
 
 @WebServlet("/login/loginProcess.do")
@@ -52,7 +53,7 @@ public class LoginProcessControllerServlet extends HttpServlet {
 		boolean valid = validate(inputData);
 		HttpSession session = req.getSession();
 		int sc = 200;
-		String goPage = null;
+		String viewName = null;
 		if(valid) {
 //		4-1. 검증 통과
 //			5-1. 인증 여부 판단
@@ -60,12 +61,12 @@ public class LoginProcessControllerServlet extends HttpServlet {
 			if(authenticated) {
 //				6-1. 인증 성공
 //					- 웰컴페이지 이동
-				goPage = "redirect:/";
+				viewName = "redirect:/";
 				session.setAttribute("authId", memId);
 			}else {
 //				6-2. 인증 실패
 //					- loginForm으로 이동
-				goPage = "redirect:/login/loginForm.jsp";
+				viewName = "redirect:/login/loginForm.jsp";
 				session.setAttribute("message", "아이디나 비밀번호 오류");
 			} // if(authenticated) end
 			
@@ -77,13 +78,7 @@ public class LoginProcessControllerServlet extends HttpServlet {
 		
 		if(sc == 200) {
 			// goPage로 이동
-			if(goPage.startsWith("redirect:")) {
-				
-				String location = req.getContextPath() + goPage.substring("redirect:".length());
-				resp.sendRedirect(location);
-			}else {
-				req.getRequestDispatcher(goPage).forward(req, resp);
-			}
+			new ViewResolverComposite().resolveView(viewName, req, resp);
 		}else {
 			resp.sendError(sc);
 		}

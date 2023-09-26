@@ -13,9 +13,9 @@
 </head>
 <body data-context-path="<%=request.getContextPath()%>">
 <form id="adrsForm" action="<%=request.getContextPath() %>/adrs/address" method="post">
-	<input type="text" name="adrsName" placeholder"이름" required><br/>
-	<input type="text" name="adrsHp" placeholder"휴대폰" required><br/>
-	<input type="text" name="adrsAdd" placeholder"주소"><br/>
+	<input type="text" name="adrsName" placeholder="이름" required><br/>
+	<input type="text" name="adrsHp" placeholder="휴대폰" required><br/>
+	<input type="text" name="adrsAdd" placeholder="주소"><br/>
 	<button type="submit">추가</button>
 </form>
 <table>

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.mvc.ViewResolverComposite;
+
 @WebServlet("/login/logout.do")
 public class LogoutControllerServlet extends HttpServlet{
 	@Override
@@ -30,14 +32,8 @@ public class LogoutControllerServlet extends HttpServlet{
 		
 		// 3. 만료된 이후의 결과 클라이언트에 보여주기 - welcome페이지로 보내기(redirect) 
 		
-		String goPage = "redirect:/";
+		String viewName = "redirect:/";
 		
-		if(goPage.startsWith("redirect:")) {
-			
-			String location = req.getContextPath() + goPage.substring("redirect:".length());
-			resp.sendRedirect(location);
-		}else {
-			req.getRequestDispatcher(goPage).forward(req, resp);
-		}
+		new ViewResolverComposite().resolveView(viewName, req, resp);
 	}
 }

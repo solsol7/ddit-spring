@@ -8,29 +8,31 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="true"/>
 		<list key="findhistory">
+			<item value="adrs/view"/>
+			<item value="&quot; \}"/>
+			<item value="DATE"/>
+			<item value="NUMER"/>
+			<item value="INT"/>
+			<item value="NUMBER"/>
+			<item value="VARCHAR"/>
+			<item value="VARCHAR2"/>
+			<item value="mem_(\w+),"/>
 			<item value="CLASS_NAME_FADE"/>
 			<item value="classList"/>
 			<item value="launch"/>
 			<item value=":v\d"/>
 			<item value=":"/>
 			<item value="auth"/>
-			<item value="param"/>
-			<item value="war-plugin"/>
-			<item value="compile"/>
-			<item value="compilerSourceVM"/>
-			<item value=".jsp"/>
-			<item value="thisMonth"/>
-			<item value="&lt;servlet-name&gt;jsp&lt;/servlet-name&gt;"/>
-			<item value="gif"/>
-			<item value="jpg"/>
 		</list>
 		<list key="replacehistory">
+			<item value="}&quot;"/>
+			<item value=", MEM_$1"/>
 			<item value="\?"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="644"/>
-		<item key="DIALOG_Y_ORIGIN" value="700"/>
+		<item key="DIALOG_X_ORIGIN" value="707"/>
+		<item key="DIALOG_Y_ORIGIN" value="385"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
