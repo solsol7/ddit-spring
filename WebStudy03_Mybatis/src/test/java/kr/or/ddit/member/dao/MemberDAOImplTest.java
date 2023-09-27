@@ -10,6 +10,17 @@ class MemberDAOImplTest {
 	MemberDAO dao = new MemberDAOImpl();
 	
 	@Test
+	void testSelectMember() {
+		MemberVO member = dao.selectMember("a001");
+		assertNotNull(member);
+		member.getProdSet()
+			.forEach((pv)->{
+				System.out.println(pv.getProdName()+", "+pv.getLprod().getLprodNm());
+			});
+	
+	}
+	
+	@Test
 	void testSelectMemberForAuth() {
 		MemberVO inputData = new MemberVO();
 		inputData.setMemId("a001");

@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -26,6 +27,8 @@ import kr.or.ddit.member.service.MemberServiceImpl;
 import kr.or.ddit.mvc.TilesViewResolver;
 import kr.or.ddit.mvc.ViewResolverComposite;
 import kr.or.ddit.utils.PopulateUtils;
+import kr.or.ddit.utils.ValidationUtils;
+import kr.or.ddit.validate.grouphint.InsertGroup;
 import kr.or.ddit.vo.MemberVO;
 
 @WebServlet("/member/memberInsert.do")
@@ -53,10 +56,11 @@ public class MemberInsertControllerServlet extends HttpServlet {
 		
 		PopulateUtils.populate(member, parameterMap);
 
-		Map<String, String> errors = new HashMap<String, String>();
+		Map<String, List<String>> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 //		3. 검증 (대상 : MemberVO)
-		boolean valid = validate(member, errors);
+		//boolean valid = validate(member, errors);
+		boolean valid = ValidationUtils.validate(member, errors, InsertGroup.class);
 		String viewName = null;
 		if(valid) {
 //			통과
@@ -93,7 +97,8 @@ public class MemberInsertControllerServlet extends HttpServlet {
 		new ViewResolverComposite().resolveView(viewName, req, resp);
 
 	}
-
+	
+/*
 	private boolean validate(MemberVO member, Map<String, String> errors) {
 		boolean valid = true;
 		if (StringUtils.isBlank(member.getMemId())) {
@@ -126,4 +131,5 @@ public class MemberInsertControllerServlet extends HttpServlet {
 		}
 		return valid;
 	}
+ */
 }

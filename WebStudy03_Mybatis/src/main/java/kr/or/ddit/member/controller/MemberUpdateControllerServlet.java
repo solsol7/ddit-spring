@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -26,6 +27,8 @@ import kr.or.ddit.member.service.MemberServiceImpl;
 import kr.or.ddit.mvc.TilesViewResolver;
 import kr.or.ddit.mvc.ViewResolverComposite;
 import kr.or.ddit.utils.PopulateUtils;
+import kr.or.ddit.utils.ValidationUtils;
+import kr.or.ddit.validate.grouphint.UpdateGroup;
 import kr.or.ddit.vo.MemberVO;
 
 @WebServlet("/member/memberUpdate.do")
@@ -65,9 +68,9 @@ public class MemberUpdateControllerServlet extends HttpServlet {
 		req.setAttribute("member", member);
 
 		// 검증...? - memberVO, errors 필요
-		Map<String, String> errors = new HashMap<String, String>();
-		boolean valid = validate(member, errors);
-		req.setAttribute("error", errors);
+		Map<String, List<String>> errors = new HashMap<>();
+		boolean valid = ValidationUtils.validate(member, errors, UpdateGroup.class);
+		req.setAttribute("errors", errors);
 		// 검증통과
 		String viewName = null;
 		if(valid) {
@@ -101,7 +104,7 @@ public class MemberUpdateControllerServlet extends HttpServlet {
 		
 		new ViewResolverComposite().resolveView(viewName, req, resp);
 	}
-
+/*
 	private boolean validate(MemberVO member, Map<String, String> errors) {
 		boolean valid = true;
 
@@ -136,4 +139,5 @@ public class MemberUpdateControllerServlet extends HttpServlet {
 
 		return valid;
 	}
+*/
 }

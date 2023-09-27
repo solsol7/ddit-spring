@@ -19,6 +19,8 @@ public class MemberViewControllerServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		
 		// 파라미터 받아오기
 		String memId = (String)req.getParameter("who");
 		

@@ -63,8 +63,12 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public int deleteMember(String memId) {
-		// TODO Auto-generated method stub
-		return 0;
+		try(
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);	
+		){
+			MemberDAO mapperProxy = sqlSession.getMapper(MemberDAO.class);
+			return mapperProxy.deleteMember(memId);
+		}
 	}
 
 }

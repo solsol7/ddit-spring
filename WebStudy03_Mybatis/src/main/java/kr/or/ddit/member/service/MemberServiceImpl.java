@@ -41,9 +41,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public ServiceResult modifyMember(MemberVO member) {
-		boolean authenticated =authService.authenticate(member);
+		ServiceResult authenticated =authService.authenticate(member);
 		ServiceResult result = null;
-		if(authenticated) {
+		if(authenticated==ServiceResult.OK) {
 			int rowcnt = dao.updateMember(member);
 			result = rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
 		}else {
@@ -54,8 +54,14 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public ServiceResult removeMember(MemberVO member) {
-		// TODO Auto-generated method stub
-		return null;
+		ServiceResult result = authService.authenticate(member);
+		if(result==ServiceResult.OK) {
+			int rowcnt = dao.deleteMember(member.getMemId());
+			result = rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+		}else {
+			result = ServiceResult.INVALIDPASSWORD;
+		}
+		return result;
 	}
 
 }

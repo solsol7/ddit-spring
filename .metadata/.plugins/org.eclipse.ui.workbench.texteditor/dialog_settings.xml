@@ -8,6 +8,7 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="true"/>
 		<list key="findhistory">
+			<item value="required"/>
 			<item value="adrs/view"/>
 			<item value="&quot; \}"/>
 			<item value="DATE"/>
@@ -22,9 +23,9 @@
 			<item value="launch"/>
 			<item value=":v\d"/>
 			<item value=":"/>
-			<item value="auth"/>
 		</list>
 		<list key="replacehistory">
+			<item value=""/>
 			<item value="}&quot;"/>
 			<item value=", MEM_$1"/>
 			<item value="\?"/>

@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.ddit.db.ConnectionFactory;
 import kr.or.ddit.servlet06.dao.DataBasePropertyDAO;
 import kr.or.ddit.servlet06.service.DataBasePropertyService;
 import kr.or.ddit.servlet06.service.DataBasePropertyServiceImpl;
