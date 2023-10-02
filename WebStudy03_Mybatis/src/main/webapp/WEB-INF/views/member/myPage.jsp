@@ -94,7 +94,42 @@
 			data-bs-target="#exampleModal" class="btn btn-danger">탈퇴</a>
      </tr>
    </table>
-   
+     <table class="table table-bordered">
+   		<thead>
+	     	<tr>
+		     	<th>상품명</th>
+		     	<th>상품분류</th>
+		     	<th>제조사이름</th>
+		     	<th>구매일자</th>
+		     	<th>구매수량</th>
+	     	</tr>
+     	</thead>
+     	<tbody>
+     		<c:set var="cartSet" value="${member.cartSet }"/>
+     		<c:choose>
+		   		<c:when test="${not empty cartSet }">
+		   			<c:forEach items="${cartSet }" var="cart">
+		   				<c:set var="prod" value="${cart.prod }"></c:set>
+		   				<c:url value="/prod/prodView.do" var="prodViewURL">
+		   					<c:param name="what" value="${prod.prodId }" />
+		   				</c:url>
+		   				<tr>
+		   					<td><a href="${prodViewURL }">${prod.prodName }</a></td>
+		   					<td>${prod.lprod.lprodNm }</td>
+		   					<td>${prod.buyer.buyerName }</td>
+		   					<td>${cart.cartDate}</td>
+		   					<td>${cart.cartQty}</td>
+		   				</tr>
+		   			</c:forEach>
+		   		</c:when>
+		   		<c:otherwise>
+		   			<tr>
+		   				<td colspan="4">구매 정보 없음</td>
+		   			</tr>
+		   		</c:otherwise>
+		 </c:choose>
+		 </tbody>
+   </table>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -13,6 +13,7 @@ import org.apache.commons.beanutils.converters.AbstractConverter;
 import org.apache.commons.lang3.StringUtils;
 
 public class PopulateUtils {
+//	캡슐화
 	public static void populate(Object bean, Map<String, ? extends Object> properties) {
 		Converter converter = new AbstractConverter() {
 			

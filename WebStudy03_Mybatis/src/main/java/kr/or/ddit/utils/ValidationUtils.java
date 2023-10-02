@@ -15,6 +15,7 @@ import kr.or.ddit.validate.grouphint.InsertGroup;
 import kr.or.ddit.vo.MemberVO;
 
 public class ValidationUtils {
+//	검증
 	private static Validator validator;
 
 	static {
