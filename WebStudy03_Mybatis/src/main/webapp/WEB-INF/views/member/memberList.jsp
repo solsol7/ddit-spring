@@ -5,6 +5,7 @@
 <table class="table table-bordered">
 	<thead>
 		<tr>
+			<th>일련번호</th>
 			<th>회원명</th>
 			<th>휴대폰</th>
 			<th>이메일</th>
@@ -15,9 +16,10 @@
 	</thead>
 	<tbody>
 
+		<c:set var="memberList" value="${paging.dataList }"></c:set>
 		<c:if test="${empty memberList }">
 			<tr>
-				<td colspan="5">검색 조건에 맞는 회원 없음.</td>
+				<td colspan="7">검색 조건에 맞는 회원 없음.</td>
 			</tr>
 		</c:if>
 		<c:if test="${not empty memberList }">
@@ -31,6 +33,7 @@
 						data-bs-target="#exampleModal" class="btn modBtn"
 						data-bs-toggle="modal" >${member.memName }</a>[${member.prodCount }]</td>
 					 -->
+					<td>${member.rnum }</td>
 					<td>${member.memName }[${member.prodCount }]</td>
 					<td>${member.memHp }</td>
 					<td>${member.memMail }</td>
@@ -41,7 +44,28 @@
 			</c:forEach>
 		</c:if>
 	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="7">
+				${paging.pagingHTML }
+				<div id="searchUI">
+					<select name="searchType">
+						<option value>전체</option>
+						<option value="name">이름</option>
+						<option value="address">지역</option>
+					</select>
+					<input type="text" name="searchWord" />
+					<input type="button" value="검색" id="searchBtn"/>
+				</div>
+			</td>
+		</tr>
+	</tfoot>
 </table>
+<form id="searchForm">
+	<input type="text" name="searchType" />
+	<input type="text" name="searchWord" />
+	<input type="text" name="page" />
+</form>
 
 <!-- Modal  // 내 코드 2
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -80,6 +104,23 @@
 	</div>
 </div>
 <script>
+	$(":input[name=searchType]").val("${paging.simpleCondition.searchType}");
+	$(":input[name=searchWord]").val("${paging.simpleCondition.searchWord}");
+	function fn_paging(page){
+		searchForm.page.value = page;
+		searchForm.requestSubmit();
+	}
+	
+	$(searchUI).on("click", "#searchBtn", function(event){
+		let inputs = $(this).parents("#searchUI").find(":input[name]");
+		$.each(inputs, function(idx, ipt){
+			let name = ipt.name;
+			let value = $(ipt).val();
+			$(searchForm).find(`:input[name=\${name}]`).val(value)
+			$(searchForm).submit();
+		})
+	});
+
 	// EDD(Event-Driven-Development)
 	$(exampleModal).on("show.bs.modal", function(event){
 		let $modal = $(this);

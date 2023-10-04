@@ -43,28 +43,28 @@
 			<th>이메일</th>
 			<th>거주지</th>
 			<th>마일리지</th>
+			<th>구매일자</th>
 		</tr>
 	</thead>
 	<tbody>
-	     <c:set var="memberSet" value="${prod.memberSet }"/>
-		<c:choose>
-		   		<c:when test="${not empty memberSet }">
-		   			<c:forEach items="${memberSet }" var="member">
+	     <c:set var="cartList" value="${prod.cartList }"/>
+			<c:if test="${not empty cartList}">
+		   			<c:forEach items="${cartList }" var="cart">
+		   				<c:set var="member" value="${cart.member }"></c:set>
 		   				<tr>
 		   					<td>${member.memName }</td>
 		   					<td>${member.memHp }</td>
 		   					<td>${member.memMail }</td>
 		   					<td>${member.memAdd1 }</td>
 		   					<td>${member.memMileage }</td>
-		   					
+		   					<td>${cart.cartDate }</td>		   					
 		   				</tr>
 		   			</c:forEach>
-		   		</c:when>
-		   		<c:otherwise>
+		   		</c:if>
+		   		<c:if test="${empty cartList}">
 		   			<tr>
-		   				<td colspan="4">구매 정보 없음</td>
+		   				<td colspan="5">구매 정보 없음</td>
 		   			</tr>
-		   		</c:otherwise>
-		 </c:choose>
+		   		</c:if>
 	</tbody>
 </table>

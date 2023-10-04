@@ -1,5 +1,6 @@
 package kr.or.ddit.vo;
 
+import java.util.List;
 import java.util.Set;
 
 import lombok.Data;
@@ -11,6 +12,9 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(of="prodId")
 public class ProdVO {
+	
+	private int rnum;
+	
 	private String prodId;
 	private String prodName;
 	private String prodLgu;
@@ -35,5 +39,7 @@ public class ProdVO {
 	private LprodVO lprod;	// has a (1:1 관계)
 							//	상품 하나가 분류 하나에 소속되어있기 때문에 1:1 관계
 	private BuyerVO buyer;
-	private Set<MemberVO> memberSet;
+	private List<CartVO> cartList;	// has many
+	
+	private Integer memCount;
 }

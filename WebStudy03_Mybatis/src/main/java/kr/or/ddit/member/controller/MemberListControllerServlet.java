@@ -9,10 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
 import kr.or.ddit.mvc.ViewResolverComposite;
+import kr.or.ddit.paging.BootstrapPaginationRenderer;
 import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.PaginationInfo;
+import kr.or.ddit.vo.SearchVO;
 
 /**
  *   목록 조회 : /member/memberList.do
@@ -29,8 +34,26 @@ public class MemberListControllerServlet extends HttpServlet{
 	private MemberService service = new MemberServiceImpl();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<MemberVO> memberList = service.retrieveMemberList();
-		req.setAttribute("memberList", memberList);
+		req.setCharacterEncoding("UTF-8");
+		
+		String searchType = req.getParameter("searchType");
+		String searchWord = req.getParameter("searchWord");
+		SearchVO simpleCondition = new SearchVO(searchType, searchWord);
+		
+		String pageParam = req.getParameter("page");
+		int currentPage = 1;
+		if(StringUtils.isNumeric(pageParam)) {
+			currentPage = Integer.parseInt(pageParam);
+		}
+		
+		PaginationInfo<MemberVO> paging = new PaginationInfo<>(5,2);
+		paging.setSimpleCondition(simpleCondition);		// 키워드 검색 조건
+		paging.setCurrentPage(currentPage);
+//		paging.setRenderer(new BootstrapPaginationRenderer());
+		
+		service.retrieveMemberList(paging);
+		
+		req.setAttribute("paging", paging);
 		
 		String viewName = "member/memberList";
 		
@@ -38,23 +61,5 @@ public class MemberListControllerServlet extends HttpServlet{
 	}
 		
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
