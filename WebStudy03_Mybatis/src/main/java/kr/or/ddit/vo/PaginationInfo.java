@@ -35,11 +35,18 @@ public class PaginationInfo<T> {
 	private int startPage;
 	private int endPage;
 	
+	/////////////////////////////
+	
 	private List<T> dataList;
 	
-	private SearchVO simpleCondition;
+	private SearchVO simpleCondition;		// 단순 키워드 검색 조건
+	private T detailCondition;	// 상세 검색 조건
 	
-	private PaginationRenderer renderer = new DefaultPaginationRenderer();
+	private PaginationRenderer renderer = new DefaultPaginationRenderer();	// 페이지 링크 만들기 위해
+	
+	public void setDetailCondition(T detailCondition) {
+		this.detailCondition = detailCondition;
+	}
 	
 	public void setSimpleCondition(SearchVO simpleCondition) {
 		this.simpleCondition = simpleCondition;

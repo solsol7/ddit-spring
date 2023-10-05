@@ -649,3 +649,26 @@
 
 10월 04, 2023 17:58:36.917 NEW SESSION
 10월 04, 2023 17:58:36.917 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+10월 05, 2023 09:51:41.585 NEW SESSION
+10월 05, 2023 09:51:41.585 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 05, 2023 10:28:20.177 [488:5868:1005/102820.177:ERROR:cert_issuer_source_aia.cc(36)] Error parsing cert retrieved from AIA (as DER):
+10월 05, 2023 10:28:20.178 ERROR: Couldn't read tbsCertificate as SEQUENCE
+10월 05, 2023 10:28:20.178 ERROR: Failed parsing Certificate
+10월 05, 2023 10:28:20.178 
+10월 05, 2023 10:28:20.205 [488:5868:1005/102820.205:ERROR:cert_verify_proc_builtin.cc(701)] CertVerifyProcBuiltin for api.codemate.kr failed:
+10월 05, 2023 10:28:20.205 ----- Certificate i=0 (CN=api.codemate.kr) -----
+10월 05, 2023 10:28:20.205 ERROR: Time is after notAfter
+10월 05, 2023 10:28:20.205 
+10월 05, 2023 10:28:20.205 
+10월 05, 2023 11:45:36.739 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+10월 05, 2023 12:05:38.151 NEW SESSION
+10월 05, 2023 12:05:38.151 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 05, 2023 13:48:11.584 [8556:8040:1005/134811.583:ERROR:connection_factory_impl.cc(471)] ConnectionHandler failed with net error: -2
+10월 05, 2023 14:50:42.581 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 05, 2023 15:09:02.893 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 05, 2023 15:22:46.434 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 05, 2023 15:28:31.189 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 05, 2023 15:32:08.141 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+10월 05, 2023 17:35:15.751 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.

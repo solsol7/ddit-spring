@@ -2,14 +2,15 @@ package kr.or.ddit.prod.service;
 
 import java.util.List;
 
+import kr.or.ddit.common.enumpkg.ServiceResult;
 import kr.or.ddit.prod.dao.ProdDAO;
-import kr.or.ddit.prod.dao.ProdDaoImpl;
+import kr.or.ddit.prod.dao.ProdDAOImpl;
 import kr.or.ddit.vo.PaginationInfo;
 import kr.or.ddit.vo.ProdVO;
 
 public class ProdServiceImpl implements ProdService{
 	
-	private ProdDAO dao = new ProdDaoImpl();
+	private ProdDAO dao = new ProdDAOImpl();
 	
 	@Override
 	public ProdVO retrieveProd(String prodId) {
@@ -18,11 +19,18 @@ public class ProdServiceImpl implements ProdService{
 
 	@Override
 	public void retreiveProdList(PaginationInfo<ProdVO> paging) {
-		int totalRecord = dao.selectTotalRecord();
+		int totalRecord = dao.selectTotalRecord(paging);
 		paging.setTotalRecord(totalRecord);
 		
 		List<ProdVO> dataList = dao.selectProdList(paging);
 		paging.setDataList(dataList);
+	}
+
+	@Override
+	public ServiceResult createProd(ProdVO prod) {
+		int rowcnt = dao.insertProd(prod);
+		return rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+		
 	}
 
 }

@@ -3,6 +3,12 @@ package kr.or.ddit.vo;
 import java.util.List;
 import java.util.Set;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import kr.or.ddit.validate.grouphint.InsertGroup;
+import kr.or.ddit.validate.grouphint.UpdateGroup;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 /**
@@ -15,18 +21,28 @@ public class ProdVO {
 	
 	private int rnum;
 	
+	@NotBlank(groups = UpdateGroup.class)
 	private String prodId;
+	@NotBlank(groups = InsertGroup.class)
 	private String prodName;
+	@NotBlank(groups = InsertGroup.class)
 	private String prodLgu;
+	@NotBlank(groups = InsertGroup.class)
 	private String prodBuyer;
+	@NotNull
 	private Integer prodCost;
+	@NotNull
 	private Integer prodPrice;
 	private Integer prodSale;
 	private String prodOutline;
 	private String prodDetail;
 	private String prodImg;
+	@NotNull
+	@Min(0)
 	private Integer prodTotalstock;
 	private String prodInsdate;
+	@NotNull
+	@Min(0)
 	private Integer prodProperstock;
 	private String prodSize;
 	private String prodColor;

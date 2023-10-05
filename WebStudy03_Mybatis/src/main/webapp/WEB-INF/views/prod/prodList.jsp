@@ -21,7 +21,7 @@
 			<c:forEach var="prod" items="${prodList}">
 				<tr>
 					<td>${prod.rnum }</td>
-					<td>${prod.prodName }</td>
+					<td><a href="<%=request.getContextPath()%>/prod/prodView.do?what=${prod.prodId}">${prod.prodName }</a></td>
 					<td>${prod.lprod.lprodNm }</td>
 					<td>${prod.buyer.buyerName }</td>
 					<td>${prod.prodCost }</td>
@@ -39,12 +39,72 @@
 	<tr>
 		<td colspan="7">
 			${paging.pagingHTML }
+			<div id="searchUI">
+				<select name="prodLgu">
+					<option value>상품분류</option>
+					<c:forEach items="${lprodList }" var="lprod">
+						<option value="${lprod.lprodGu }" label="${lprod.lprodNm }"/>
+					</c:forEach>
+				</select>
+				<select name="prodBuyer">
+					<option value>제조사</option>
+					<c:forEach items="${buyerList }" var="buyer">
+						<option class="${buyer.buyerLgu }" value="${buyer.buyerId }"  label="${buyer.buyerName }"/>
+					</c:forEach>
+				</select>
+				<input type="text" name="prodName" placeholder="상품명" />
+				<input type="button" value="검색" id="searchBtn" />
+			</div>
 		</td>
 	</tr>
 	</tfoot>
 </table>
+<button type="button" id="insertBtn" class="btn btn-primary">추가</button>
+<form id="searchForm">
+	<input type="hidden" name="prodLgu" readonly="readonly" placeholder="prodLgu"/>
+	<input type="hidden" name="prodBuyer" readonly="readonly" placeholder="prodBuyer"/>
+	<input type="hidden" name="prodName" readonly="readonly" placeholder="prodName"/>
+	<input type="hidden" name="page" readonly="readonly" placeholder="page"/>
+</form>
 <script>
+	$("select[name=prodLgu]").on("change", function(event){
+		let lgu = $(this).val();
+		let options = $("select[name=prodBuyer]").find("option");
+		$(options).hide();
+		$(options).filter((i,e)=>i==0).show();
+		if(lgu){
+			$(options).filter(`.\${lgu}`).show();
+		}else{
+			$(options).show();
+		}
+		/*
+		$("select[name=prodBuyer]").find("option:first").show();
+		if(lgu){
+			$("select[name=prodBuyer]").find(`option.\${lgu}`).show();		
+		}else{
+			$("select[name=prodBuyer]").find(`option`).show();	
+		}
+		*/
+	});
+	$(':input[name=prodLgu]').val("${paging.detailCondition.prodLgu}").trigger("change");
+	$(':input[name=prodBuyer]').val("${paging.detailCondition.prodBuyer}");
+	$(':input[name=prodName]').val("${paging.detailCondition.prodName}");
+	
 	function fn_paging(page){
-		location.href="?page="+page;
+		$(":input[name=page]").val(page);
+		$('#searchForm').submit();
 	}
+	$('#searchBtn').on("click", function(){
+		let inputs = $(this).parents("#searchUI").find(':input[name]');
+		$.each(inputs, function(i,v){
+			let name = v.name;
+			let value = $(v).val();
+			$('#searchForm').find(`:input[name=\${name}]`).val(value);
+		})
+		$('#searchForm').submit();
+	})
+	
+	$('#insertBtn').on('click',function(){
+		location.href="<%=request.getContextPath()%>/prod/prodInsert.do"
+	})
 </script>
