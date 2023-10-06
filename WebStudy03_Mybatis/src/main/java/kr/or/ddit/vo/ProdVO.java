@@ -36,7 +36,11 @@ public class ProdVO {
 	private Integer prodSale;
 	private String prodOutline;
 	private String prodDetail;
-	private String prodImg;
+	
+	@NotBlank
+	private String prodImg;	// db와 연결되는 필드
+	
+	
 	@NotNull
 	@Min(0)
 	private Integer prodTotalstock;

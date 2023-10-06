@@ -15,6 +15,8 @@ D:\00.tools\eGovFrameDev-4.1.0-64bit\workspace\.metadata\.plugins\org.eclipse.js
 \WebStudy01\src\main\java
 D:\00.tools\eGovFrameDev-4.1.0-64bit\workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1727167626.index
 \WebStudy01\src\main\java
+D:\00.tools\eGovFrameDev-4.1.0-64bit\workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4136226999.index
+\WebStudy03_Mybatis\src\main\java
 D:\00.tools\eGovFrameDev-4.1.0-64bit\workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4093240192.index
 \homework\src\main\java
 D:\00.tools\eGovFrameDev-4.1.0-64bit\workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2582032828.index

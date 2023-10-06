@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<a href="<c:url value='/prod/prodInsert.do'/>" class="btn btn-primary">신규상품 등록</a>
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -59,7 +60,6 @@
 	</tr>
 	</tfoot>
 </table>
-<button type="button" id="insertBtn" class="btn btn-primary">추가</button>
 <form id="searchForm">
 	<input type="hidden" name="prodLgu" readonly="readonly" placeholder="prodLgu"/>
 	<input type="hidden" name="prodBuyer" readonly="readonly" placeholder="prodBuyer"/>

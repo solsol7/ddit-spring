@@ -2,6 +2,7 @@ package kr.or.ddit.adrs.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -34,8 +34,9 @@ public class AddressDataControllerServlet extends HttpServlet{
 		boolean valid = lastIdx >= baseLen && lastIdx < uriLen -1;
 		System.out.printf("%s : %b\n",uri, valid);
 		
-		HttpSession session = req.getSession();
-		String memId = (String)session.getAttribute("authId");
+		Principal principal = req.getUserPrincipal();
+		String memId = principal.getName();
+		
 		
 		List<AddressVO> adrsList = service.retriveAddressList(memId);
 		req.setAttribute("adrsList", adrsList);
@@ -69,8 +70,7 @@ public class AddressDataControllerServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
-		
+
 		try(
 			InputStream is = req.getInputStream();
 		){

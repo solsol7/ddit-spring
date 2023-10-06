@@ -34,7 +34,6 @@ public class MemberListControllerServlet extends HttpServlet{
 	private MemberService service = new MemberServiceImpl();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
 		
 		String searchType = req.getParameter("searchType");
 		String searchWord = req.getParameter("searchWord");

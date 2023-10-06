@@ -1,6 +1,7 @@
 package kr.or.ddit.member.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +20,10 @@ public class MyPageControllerServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String memId = (String) req.getSession().getAttribute("authId");
+		Principal principal = req.getUserPrincipal();
+		
+		String memId = principal.getName();
+		
 		MemberVO member = service.retrieveMember(memId);
 		
 		req.setAttribute("member", member);

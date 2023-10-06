@@ -2,6 +2,7 @@ package kr.or.ddit.member.controller;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
@@ -38,10 +39,10 @@ public class MemberUpdateControllerServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		// 세션 스코프의 아이디 받아오기
-		String memId = (String) req.getSession().getAttribute("authId");
-
-		// 스코프 아이디로 정보 얻기
+		Principal principal = req.getUserPrincipal();
+		
+		String memId = principal.getName();
+		
 		MemberVO member = service.retrieveMember(memId);
 
 		// 정보 request로 전달
@@ -55,8 +56,6 @@ public class MemberUpdateControllerServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 인코딩
-		req.setCharacterEncoding("UTF-8");
 
 		// 파라미터 vo로 받기
 		MemberVO member = new MemberVO();
