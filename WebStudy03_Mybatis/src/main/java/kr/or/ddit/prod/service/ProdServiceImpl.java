@@ -33,4 +33,12 @@ public class ProdServiceImpl implements ProdService{
 		
 	}
 
+	@Override
+	public ServiceResult modifyProd(ProdVO prod) {
+		int rowcnt = dao.updateProd(prod);
+		return rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+	}
+	
+	
+
 }

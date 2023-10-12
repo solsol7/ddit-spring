@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+		default-lazy-init="true"
+	>
+<!-- dao-mysql service에 세터로 인젝션 -->
+<!-- sampleservice impl -->
+<!-- 필요가없으면 생성하지않음 -->
+
+<!-- 모든 다오는 싱글톤으로 운영 -->
+<!-- 필요하면 서비스는 주입될 때마다 새로운 객체가 만들어지도록 함 -->
+	<bean class="kr.or.ddit.case1.dao.Case1SampleDAOImpl_Mysql" id="case1SampleDAOImpl_Mysql"
+		lazy-init="true"
+	 />
+	<bean class="kr.or.ddit.case1.service.Case1SampleServiceImpl" id="case1SampleServiceImpl" 
+		p:dao-ref="case1SampleDAOImpl_Mysql"
+		scope="prototype"
+	/>
+<!-- 	prototype -> prototype+lazy-init과 비슷한 의미 -->
+
+</beans>

@@ -31,4 +31,6 @@ public interface ProdService {
 	 * @return OK, FAIL
 	 */
 	public ServiceResult createProd(ProdVO prod);
+	
+	public ServiceResult modifyProd(ProdVO prod);
 }

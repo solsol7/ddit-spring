@@ -31,6 +31,8 @@ import kr.or.ddit.vo.ProdVO;
 @MultipartConfig
 public class ProdInsertControllerServlet extends HttpServlet{
 	private String prodImagesUrl = "/resources/prodImages";
+				// binary Data가 저장되는 곳 -> Web resource 형태로 저장
+				// 파일을 저장할 때 원본파일 이름을 그대로 저장하지 않음, 확장자명 없애는 것이 좋음
 	
 	private ProdService service = new ProdServiceImpl();
 	private OthersDAO othersDAO = new OthersDAOImpl();

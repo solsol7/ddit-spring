@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<!-- 	어노테이션을 사용할 수 있는 post processor 를 빈으로 등록함. -->
+<!-- 	<context:annotation-config /> -->
+<!-- 	필요한 인젝션이나 빈이 있으면 어노테이션 사용 -->
+<!-- 	setter에 required 어노테이션 쓰면 필수로 -->
+<!-- 	autowired => 주입까지해줌 -->
+<!-- 	postConstruct/preDestroy - > lifecycle callback(init, destroy) -->
+
+
+<!-- 	base-package 에 있는 클래스들 중, -->
+<!-- 	몇가지 조건에 맞는 클래스를 빈으로 등록 -->
+	<context:component-scan base-package="kr.or.ddit.case1" use-default-filters="true">
+<!-- 		<context:exclude-filter type="annotation" expression=""/> -->
+	</context:component-scan>
+<!-- 	얘가 annotation-config 포함하고있음 - 굳이 두개 다 넣을 필요는 ㄴ없음 -->
+<!-- 	base-package => 어느 영역에 있는 클래스를 등록할 건지 지정해라 .. 스캔의 대상이 됨-->
+<!-- 	꼭 필요하니까 빈으로 등록해야해 -> 어노테이션쓰기 -->
+<!-- 		어노테이션만 쓰면 setter인젝션 p 못ㅡㅆㅁ => 어노테이션 쓰면 어노테이션으로 주입해야함 -->
+<!-- 컨테이너의 계층구조가 필요할 때 use-default-filters=false -->
+<!-- 어떤건 상위에 등록하고 어떤건 하위에 등록해야할 때... -> 어노테이션이 일괄적용되면 나눠서 등록하는것 불가능해짐 -->
+
+
+<!-- 	자동 등록되는 어노테이션들(@component를 메타 어노테이션으로 갖고있는 것들) -->
+<!-- 	@Component -->
+<!-- 	@Repository  - 보통 dao에 씀 -->
+<!-- 	@Service  - 보통 service에 씀 -->
+<!-- 	@Controller - 보통 controller에 씀 -->
+<!-- 사람과 시스템에 동시에 영향 - 사람의 입장에서 controller 아닌데에 controller 붙이면 착각함 - > 그래서 쪼개져있는것 -->
+<!-- 실제 역할은 똑같음 -->
+
+<!-- 	@AutoWired : type 으로 주입 대상 검색 -->
+<!-- 	@Resource : 주입 대상 검색 조건 설정 가능 -->
+<!-- 	@Inject(==AutoWired) / @Named(== @Resource(name)) -->
+
+</beans>

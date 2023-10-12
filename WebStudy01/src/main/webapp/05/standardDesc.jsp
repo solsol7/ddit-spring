@@ -30,7 +30,7 @@
 	 			public void test(){}
 	 		%>
 	 	5) comment
-<!-- 	 		comment1 -->
+			<!-- comment1 -->
 			<%--comment5 --%>
 	 		- client side comment : HTML comment, JS comment, CSS comment  -> 가능하면 사용하지 않도록
 	 		- server side comment : Java comment, JSP comment

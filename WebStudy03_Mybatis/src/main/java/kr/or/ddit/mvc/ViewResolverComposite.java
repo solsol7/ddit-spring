@@ -14,8 +14,11 @@ public class ViewResolverComposite implements ViewResolver {
 	public ViewResolverComposite() {
 		super();
 		viewResolvers = new ArrayList<ViewResolver>();
-		viewResolvers.add(new TilesViewResolver());
-		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+		
+		viewResolvers.add(new BeanNameViewResolver());
+		viewResolvers.add(new TilesViewResolver());	// tiles definition용
+		
+		InternalResourceViewResolver resolver = new InternalResourceViewResolver();	// single jsp
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
 		viewResolvers.add(resolver);
