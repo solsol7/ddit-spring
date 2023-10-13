@@ -4,8 +4,10 @@
 	xmlns:c="http://www.springframework.org/schema/c"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
 <!-- 	<bean class="kr.or.ddit.resource.ResourceVO" id="resourceVO"  -->
 <!-- 		p:res1="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" -->
@@ -18,18 +20,21 @@
  
  	<context:component-scan base-package="kr.or.ddit.resource" ></context:component-scan>
 	
+	<util:properties id="dbInfoProps" location="classpath:kr/or/ddit/db/dbInfo.properties" />
+	
 	<bean class="java.util.Properties" />
-	utils
+<!-- 	utils -->
 	
-	<bean class="kr.or.ddit.resource.DBInfo" id="DBInfo" 
-		c:url=""
-		c:password=""
-		c:maxTotal=""
-		c:maxWait=""
-	/>
-	파일이 로딩되어있어야함 - 프로퍼티스 객체 만들어야함
-	Properties
-	ResourceBundle
+<!-- 	<bean class="kr.or.ddit.resource.DBInfo" id="DBInfo"  -->
+<!-- 		c:url="#{dbInfoProps.url}" -->
+<!-- 		c:password="#{dbInfoProps.password}" -->
+<!-- 		c:maxTotal="#{dbInfoProps.maxTotal}" -->
+<!-- 		c:maxWait="#{dbInfoProps.maxWait}" -->
+<!-- 	/> -->
+<!-- 스프링의 el은 $아니라 #, el 안에 빈의 아이디가 들어감 -->
+<!-- 	파일이 로딩되어있어야함 - 프로퍼티스 객체 만들어야함 -->
+<!-- 	Properties -->
+<!-- 	ResourceBundle -->
 	
-	u
+<!-- 	u -->
 </beans>

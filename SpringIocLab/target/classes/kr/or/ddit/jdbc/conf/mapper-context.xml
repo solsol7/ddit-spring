@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
+
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory"
+		p:configLocation="classpath:kr/or/ddit/mybatis/Configuration.xml"
+		p:dataSource-ref="dataSource"
+		p:mapperLocations="classpath:kr/or/ddit/mybatis/mapper/*.xml"
+	 />
+<!-- 	공장객체를 빈으로 등록X 그 안에서 만들어진 객체를 빈으로 등록O -> sqlSessionFactoryBean(X) -->
+
+	<bean class="org.mybatis.spring.SqlSessionTemplate"
+		id="sqlSession" 
+		c:sqlSessionFactory-ref="sqlSessionFactory"
+	/>
+<!-- 	내부에서 대신 세션 오픈해줌, 다 사용하고 나면 알아서 클로즈해줌 -->
+
+	<mybatis-spring:scan base-package="kr.or.ddit.jdbc.dao"
+		annotation="org.apache.ibatis.annotations.Mapper"
+	/>
+<!-- 	다오의 인터페이스가 있는 패키지  이 패키지 안에 있는 모든 인터페이스는 알아서 프록시가 만들어짐-->
+<!-- 	anntation -> 이 어노테이션이 있는 경우에만 프록시가 만들어짐 -->
+		
+</beans>

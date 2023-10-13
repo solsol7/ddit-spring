@@ -36,6 +36,9 @@ public class ResourceLoaderDesc {
 		log.info("res1 : {}", res1.contentLength());
 		log.info("res2 : {}", res2.contentLength());
 		log.info("res3 : {}", res3.contentLength());
+		
+		DBInfo info = resourceLoader.getBean(DBInfo.class);
+		log.info("db info : {}", info);
 	}
 }
 
