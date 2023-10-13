@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<!-- 	<bean class="kr.or.ddit.resource.ResourceVO" id="resourceVO"  -->
+<!-- 		p:res1="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" -->
+<!-- 		p:res2="classpath:kr/or/ddit/db/dbInfo.properties" -->
+<!-- 		p:res3="file:D:/01.medias/images/cute7.JPG" -->
+<!-- 	/> -->
+<!-- 		ref => 이미 인젝션을 받아야하는 객체가 빈으로 등록이 돼있고 그 빈이 래퍼런스를 가지고있을때 
+			컨테이너는 로더임 -> prefix 따라서 찾음	
+ -->
+ 
+ 	<context:component-scan base-package="kr.or.ddit.resource" ></context:component-scan>
+	
+	<bean class="java.util.Properties" />
+	utils
+	
+	<bean class="kr.or.ddit.resource.DBInfo" id="DBInfo" 
+		c:url=""
+		c:password=""
+		c:maxTotal=""
+		c:maxWait=""
+	/>
+	파일이 로딩되어있어야함 - 프로퍼티스 객체 만들어야함
+	Properties
+	ResourceBundle
+	
+	u
+</beans>

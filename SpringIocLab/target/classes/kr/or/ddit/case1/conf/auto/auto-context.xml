@@ -18,7 +18,7 @@
 	<context:component-scan base-package="kr.or.ddit.case1" use-default-filters="true">
 <!-- 		<context:exclude-filter type="annotation" expression=""/> -->
 	</context:component-scan>
-<!-- 	얘가 annotation-config 포함하고있음 - 굳이 두개 다 넣을 필요는 ㄴ없음 -->
+<!-- 	얘가 annotation-config 포함하고있음 - 굳이 두개 다 넣을 필요는 없음 -->
 <!-- 	base-package => 어느 영역에 있는 클래스를 등록할 건지 지정해라 .. 스캔의 대상이 됨-->
 <!-- 	꼭 필요하니까 빈으로 등록해야해 -> 어노테이션쓰기 -->
 <!-- 		어노테이션만 쓰면 setter인젝션 p 못ㅡㅆㅁ => 어노테이션 쓰면 어노테이션으로 주입해야함 -->
