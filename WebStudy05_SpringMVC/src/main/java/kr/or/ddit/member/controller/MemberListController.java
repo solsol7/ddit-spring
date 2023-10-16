@@ -1,13 +1,14 @@
 package kr.or.ddit.member.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.ddit.member.service.MemberService;
-import kr.or.ddit.member.service.MemberServiceImpl;
-import kr.or.ddit.mvc.annotation.resolvers.ModelAttribute;
-import kr.or.ddit.mvc.annotation.resolvers.RequestParam;
-import kr.or.ddit.mvc.annotation.stereotype.Controller;
-import kr.or.ddit.mvc.annotation.stereotype.RequestMapping;
 import kr.or.ddit.paging.BootstrapPaginationRenderer;
 import kr.or.ddit.vo.MemberVO;
 import kr.or.ddit.vo.PaginationInfo;
@@ -25,15 +26,14 @@ import kr.or.ddit.vo.SearchVO;
  */
 @Controller
 public class MemberListController{
-	private MemberService service = new MemberServiceImpl();
+	@Inject
+	private MemberService service;
 
 	@RequestMapping("/member/memberList.do")
 	public String doGet(
-		@RequestParam(value="searchType", required = false) String searchType
-		, @RequestParam(value="searchWord", required = false) String searchWord
-		, @RequestParam(value="page", required = false, defaultValue = "1") int currentPage
-		, HttpServletRequest req
+		Model model
 		, @ModelAttribute("simpleCondition") SearchVO simpleCondition
+		, @RequestParam(value="page", required = false, defaultValue = "1") int currentPage
 	){
 		
 		PaginationInfo<MemberVO> paging = new PaginationInfo<>(5, 2);
@@ -43,11 +43,29 @@ public class MemberListController{
 		service.retrieveMemberList(paging);
 		
 		paging.setRenderer(new BootstrapPaginationRenderer());
-		req.setAttribute("paging", paging);
+		model.addAttribute("paging", paging);
 		
 		return "member/memberList";
 	}
 		
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

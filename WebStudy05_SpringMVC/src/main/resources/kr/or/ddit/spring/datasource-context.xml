@@ -9,8 +9,10 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
+<!-- 	dbInfo를 스프링 컨테이너를 이용해 찾아냄 -->
 	<util:properties id="dbInfo" location="classpath:kr/or/ddit/db/dbInfo.properties" />
 
+<!-- 	커넥션 풀링, 커넥션 생성구조 - BasicDataSource 등록 -->
 	<bean class="org.apache.commons.dbcp2.BasicDataSource" id="dataSource" 
 		p:driverClassName="#{dbInfo.driverClassName}"
 		p:url="#{dbInfo.url}"
@@ -23,11 +25,13 @@
 		p:maxWaitMillis="#{dbInfo['maxWait']}"
 	/>
 	
+<!-- 	JdbcTemplate -> sqlMapper, dataMapper - 마이바티스 역할을 해줌 -->
 	<bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate" 
 		p:dataSource-ref="dataSource"
 	/>
-<!-- 	JdbcTemplate -> sqlMapper, dataMapper - 마이바티스 역할을 해줌 -->
 	
+<!-- 	트랜잭션의 관리자 - 커밋과 롤백 역할 수립 - 하려면 커넥션 필요- 데이터소스가 커넥션 생성해줌
+		 - 데이터소스 인젝션 - 세터인젝션 -->
 	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" 
 		id="transactionManager"
 		p:dataSource-ref="dataSource"

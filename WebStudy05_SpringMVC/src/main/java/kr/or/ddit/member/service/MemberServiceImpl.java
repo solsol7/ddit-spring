@@ -2,18 +2,26 @@ package kr.or.ddit.member.service;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
 import kr.or.ddit.common.enumpkg.ServiceResult;
 import kr.or.ddit.login.service.AuthenticateService;
 import kr.or.ddit.login.service.AuthenticateServiceImpl;
 import kr.or.ddit.member.UserNotFoundException;
 import kr.or.ddit.member.dao.MemberDAO;
-import kr.or.ddit.member.dao.MemberDAOImpl;
 import kr.or.ddit.vo.MemberVO;
 import kr.or.ddit.vo.PaginationInfo;
+import lombok.RequiredArgsConstructor;
 
+@Service
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
-	private MemberDAO dao = new MemberDAOImpl();
-	private AuthenticateService authService = new AuthenticateServiceImpl();
+
+	private final MemberDAO dao;
+	@Inject
+	private AuthenticateService authService;
 
 	@Override
 	public ServiceResult createMember(MemberVO member) {

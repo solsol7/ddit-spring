@@ -12,10 +12,16 @@
 	</context-param>
 
 	<!-- Bootstraps the root web application context before servlet initialization -->
+<!-- 	상위컨테이너 형성 위한 리스너 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+<!-- 어플리케이션의 시작지점에서 제일 먼저 컨테이너를 생성해야함 - 
+	서버가 구동되는 시점을 시작지점으로 정해서 그 시점에 동작할 수 있는 이벤트 리스너 필요 -> 상위컨테이너 생성 -->
+<!-- 서버가 구동되면 상위컨테이너 생성된 후 하위 컨테이너 생성 - controller에 대한 정보 수집 -->
 	
+<!-- 	필터체인은 스프링 컨테이너 밖에 있음 -> 필터를 관리하는 애는 스프링이 아니라 톰캣임 - 인젝트할 수 없음 -->
+<!-- 	하위컨테이너 - ContextLoaderListener / 상위컨테이너 - 디스패처 서블릿 -->
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -28,7 +34,14 @@
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+	<filter>
+		<filter-name>GeneratePrincipalFilter</filter-name>
+		<filter-class>kr.or.ddit.filter.GeneratePrincipalFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>GeneratePrincipalFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	<filter>
 		<filter-name>MultipartFilter</filter-name>
 		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
@@ -39,23 +52,39 @@
 	</filter-mapping>
 	
 	<!-- The front controller of this Spring Web application, responsible for handling all application requests -->
+<!-- 	하위컨테이너를 관리하는 애 -> 디스패쳐서블릿 -->
 	<servlet>
 		<servlet-name>springDispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/servlet-context.xml</param-value>
+<!-- 			하위 컨테이너를 생성하기 위한 xml -->
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 		<multipart-config></multipart-config>
 	</servlet>
 
 	<!-- Map all requests to the DispatcherServlet for handling -->
+
 	<servlet-mapping>
 		<servlet-name>springDispatcherServlet</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>/</url-pattern>
+<!-- 	/* 이렇게 쓰면	이 패턴 안에는 *.jsp가 포함된거나 마찬가지임
+		-> .jsp로 발생하는 모든 요청을 톰캣이 처리할 수 있어야함 ->근데 디스패처 서블릿이 뺏어버림
+		-> jsp서블릿이 동작 못함. -->
+<!-- 		.jsp 확장자 이외의 모든 요청은 defaultservlet이 처리함 ..
+		-> 나머지 요청을 처리할 때 사용하는 패턴이 / -->
+<!-- 		/이렇게 쓰면 얘도 똑같은 의미 갖게됨 ->.jsp를 제외한 나머지 요청은 디스패처 서블릿으로 들어옴 
+		-> 그 모든 요청 안에는 정적자원에 대한 요청도 포함됨 - 원래는 톰캣의 defaultservlet이 처리하고있었음
+		-> 근데 그 기능을 디스패처서블릿이 뺏어버림 -> 하나하나에 대한 요청을 컨트롤러를 통해 처리하려함
+		-> 정적자원에 대해서 컨트롤러 만든 적 없음 -> UI 깨짐 -->
+<!-- 		이런 경우에 정적자원을 처리해줄 수 있는 심플핸들러 매핑 사용 -->
+
+
 		<url-pattern>/index.do</url-pattern>
+		
+		
 	</servlet-mapping>
 	
-
 </web-app>

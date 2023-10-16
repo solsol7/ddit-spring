@@ -1,9 +1,12 @@
 package kr.or.ddit.vo;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -11,6 +14,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.ddit.validate.grouphint.InsertGroup;
 import kr.or.ddit.validate.grouphint.UpdateGroup;
@@ -28,11 +32,11 @@ public class ProdVO implements Serializable{
 	
 	@NotBlank(groups = UpdateGroup.class)
 	private String prodId;
-	@NotBlank(groups = InsertGroup.class)
+	@NotBlank
 	private String prodName;
 	@NotBlank(groups = InsertGroup.class)
 	private String prodLgu;
-	@NotBlank(groups = InsertGroup.class)
+	@NotBlank
 	private String prodBuyer;
 	@NotNull
 	private Integer prodCost;
@@ -44,7 +48,19 @@ public class ProdVO implements Serializable{
 	
 	@NotBlank(groups = InsertGroup.class)
 	private String prodImg;	// db와 연결되는 필드
+	private MultipartFile prodImage;
 	
+	public void setProdImage(MultipartFile prodImage) {
+		if(prodImage!=null && !prodImage.isEmpty()) {
+			this.prodImage = prodImage;
+			prodImg = UUID.randomUUID().toString();
+		}
+	}
+	
+	public void saveTo(File saveFolder) throws IllegalStateException, IOException {
+		if(prodImage!=null)
+			prodImage.transferTo(new File(saveFolder, prodImg));
+	}
 	
 	@NotNull
 	@Min(0)

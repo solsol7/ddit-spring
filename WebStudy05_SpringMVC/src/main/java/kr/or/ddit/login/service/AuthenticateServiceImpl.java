@@ -2,16 +2,20 @@ package kr.or.ddit.login.service;
 
 import java.lang.reflect.InvocationTargetException;
 
+import javax.inject.Inject;
+
 import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.stereotype.Service;
 
 import kr.or.ddit.common.enumpkg.ServiceResult;
 import kr.or.ddit.member.dao.MemberDAO;
-import kr.or.ddit.member.dao.MemberDAOImpl;
 import kr.or.ddit.vo.MemberVO;
 
+@Service
 public class AuthenticateServiceImpl implements AuthenticateService {
-
-	private MemberDAO memberDAO = new MemberDAOImpl();
+	
+	@Inject
+	private MemberDAO memberDAO;
 	
 	@Override
 	public ServiceResult authenticate(MemberVO inputData) {

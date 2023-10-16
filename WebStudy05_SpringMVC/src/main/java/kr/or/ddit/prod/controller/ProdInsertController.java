@@ -1,31 +1,21 @@
 package kr.or.ddit.prod.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
 
 import kr.or.ddit.common.enumpkg.ServiceResult;
 import kr.or.ddit.prod.dao.OthersDAO;
 import kr.or.ddit.prod.service.ProdService;
-import kr.or.ddit.prod.service.ProdServiceImpl;
-import kr.or.ddit.utils.ValidationUtils;
 import kr.or.ddit.validate.grouphint.InsertGroup;
 import kr.or.ddit.vo.BuyerVO;
 import kr.or.ddit.vo.LprodVO;
@@ -40,11 +30,13 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequiredArgsConstructor
 public class ProdInsertController{
-	@Value("/resources/prodImages")
+	/*
+	@Value("#{appInfo.prodImagesUrl}")
 	private String prodImagesUrl;
 				// binary Data가 저장되는 곳 -> Web resource 형태로 저장
 				// 파일을 저장할 때 원본파일 이름을 그대로 저장하지 않음, 확장자명 없애는 것이 좋음
-	@Value("/resources/prodImages")
+
+	@Value("#{appInfo.prodImagesUrl}")
 	private Resource prodImages;
 	
 	private File saveFolder;
@@ -55,7 +47,7 @@ public class ProdInsertController{
 		saveFolder = prodImages.getFile();
 		log.info("상품 이미지 저장 위치 : {}", saveFolder.getCanonicalPath());
 	}
-	
+	*/
 	private final ProdService service;
 	@Inject
 	private OthersDAO othersDAO;
@@ -71,6 +63,12 @@ public class ProdInsertController{
 		return othersDAO.selectBuyerList(null);
 	}
 	
+	@ModelAttribute("prod")
+	public ProdVO prod() {
+		return new ProdVO();
+	}	// 처음에 insert할 때는 prod가 없어서 jsp 오류남 -> 비어있는 객체 하나 만들어줌
+		// ModelAttribute -> 메소드에 붙이면 모든 컨트롤러가 실행되기 전에 먼저 실행됨
+	
 	@RequestMapping("/prod/prodInsert.do")
 	public String prodForm(){
 		return "prod/prodForm";
@@ -78,22 +76,18 @@ public class ProdInsertController{
 	
 	@RequestMapping(value = "/prod/prodInsert.do", method = RequestMethod.POST)
 	public String prodInsert(
-			MultipartFile prodImage
-			, @ModelAttribute("prod") ProdVO prod
+			@Validated(InsertGroup.class) @ModelAttribute("prod") ProdVO prod
+			, BindingResult errors
 			, Model model
 	) throws IOException{
-			if(!prodImage.isEmpty()) {
-				String filename = UUID.randomUUID().toString();
-				File saveFile = new File(saveFolder, filename);
-				// 상품 이미지의 2진 데이터 저장
-				prodImage.transferTo(saveFile);				
-				prod.setProdImg(filename);
-			}
 		
+//		prod.saveTo(saveFolder);
 		
-		Map<String, List<String>> errors = new HashMap<>();
-		model.addAttribute("errors", errors);
-		boolean valid = ValidationUtils.validate(prod, errors, InsertGroup.class);
+//		Map<String, List<String>> errors = new HashMap<>();
+//		model.addAttribute("errors", errors);
+//		boolean valid = ValidationUtils.validate(prod, errors, InsertGroup.class);
+		
+		boolean valid = !errors.hasErrors();
 		
 		String viewName = null;
 		if(valid) {

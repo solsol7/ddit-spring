@@ -1,9 +1,13 @@
 package kr.or.ddit.prod.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
-import javax.inject.Inject;
+import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import kr.or.ddit.common.enumpkg.ServiceResult;
@@ -15,6 +19,18 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ProdServiceImpl implements ProdService{
+	
+	@Value("#{appInfo.prodImagesUrl}")
+	private String prodImagesUrl;
+	@Value("#{appInfo.prodImagesUrl}")
+	private Resource prodImages;
+	
+	private File saveFolder;
+
+	@PostConstruct
+	private void init() throws IOException {
+		saveFolder = prodImages.getFile();
+	}
 
 	private final ProdDAO dao;
 	
@@ -32,19 +48,38 @@ public class ProdServiceImpl implements ProdService{
 		paging.setDataList(dataList);
 	}
 
+	private void processProdImage(ProdVO prod) {
+		try {
+			prod.saveTo(saveFolder);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 	@Override
 	public ServiceResult createProd(ProdVO prod) {
 		int rowcnt = dao.insertProd(prod);
-		return rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
-		
+		ServiceResult result = null;
+		if(rowcnt>0) {
+			result = ServiceResult.OK;
+			processProdImage(prod);
+		}else {
+			result=ServiceResult.FAIL;
+		}
+		return result;
 	}
 
 	@Override
 	public ServiceResult modifyProd(ProdVO prod) {
 		int rowcnt = dao.updateProd(prod);
-		return rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+		ServiceResult result = null;
+		if(rowcnt>0) {
+			result = ServiceResult.OK;
+			processProdImage(prod);
+		}else {
+			result=ServiceResult.FAIL;
+		}
+		return result;
 	}
 	
-	
-
 }

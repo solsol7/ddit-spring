@@ -7,21 +7,28 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
 
+<!-- 	FactoryBean - FactoryBean의 객체가 등록X 그 안에서 생성되는 객체가 빈으로 등록됨 -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory"
 		p:configLocation="classpath:kr/or/ddit/mybatis/Configuration.xml"
 		p:dataSource-ref="dataSource"
 		p:mapperLocations="classpath:kr/or/ddit/mybatis/mapper/*.xml"
 	 />
 	 
+<!-- 	 다오의 구현체가 있다면 필요함, 없으면 필요없음 -->
+<!-- 	 얘를 주입받아 사용하면 따로 세션을 오픈할 필요없어짐 - 클로즈도 할필요 없어짐 -->
 	<bean class="org.mybatis.spring.SqlSessionTemplate"
 		id="sqlSession" 
 		c:sqlSessionFactory-ref="sqlSessionFactory"
 	/>
-<!-- 	mybatis-Spring 알아서 맵퍼프록시 생성 - 스프링 컨테이너에 등록해줌 -->
 
+<!-- 	mybatis-Spring 알아서 맵퍼프록시 생성 - 스프링 컨테이너에 등록해줌 => 다오의 구현체 필요없어짐  -->
+<!-- 	해당 패키지 안에 있는 모든 인터페이스는 자동으로 프록시 생성 - 필요없는것도 생성됨-  필터링조건 : 맵퍼 어노테이션 -->
+<!-- 	맵퍼 어노테이션이 있는 경우에만 프록시 생성, 없는 경우 안생성 -->
 	<mybatis-spring:scan base-package="kr.or.ddit.**.dao"
 		annotation="org.apache.ibatis.annotations.Mapper"
 		factory-ref="sqlSessionFactory"
 		template-ref="sqlSession"
 	/>
+	
+	
 </beans>

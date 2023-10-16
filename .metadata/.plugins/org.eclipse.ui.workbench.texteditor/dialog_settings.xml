@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="lombok"/>
+		<item key="selection" value="&lt;servlet-name&gt;default&lt;/servlet-name&gt;"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="true"/>
 		<list key="findhistory">
+			<item value="&lt;servlet-name&gt;default&lt;/servlet-name&gt;"/>
+			<item value="inpu"/>
+			<item value="&lt;span class=&quot;error&quot;&gt;\$\{errors\.(\w+)\}&lt;/span&gt;"/>
+			<item value="&lt;span class=&quot;error&quot;&gt;\$\{errors\.memRegno1\}&lt;/span&gt;"/>
+			<item value="required=&quot;true&quot;"/>
+			<item value="&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodName\}&lt;/span&gt;"/>
+			<item value="\t\t\t&lt;th&gt;&lt;label for=&quot;prodLgu&quot;&gt;상품분류&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:select path=&quot;prodLgu&quot; id=&quot;prodLgu&quot; class=&quot;form-select&quot; required=&quot;true&quot;\R\t\t\t\titems=&quot;\$\{lprodList \}&quot; itemLabel=&quot;lprodNm&quot; itemValue=&quot;lprodGu&quot; /&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodLgu\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodBuyer&quot;&gt;제조사&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t\t&lt;form:select path=&quot;prodBuyer&quot; class=&quot;form-select&quot;&gt;\R\t\t\t\t\t\t&lt;option value&gt;제조사&lt;/option&gt;\R\t\t\t\t\t\t\t&lt;c:forEach items=&quot;\$\{buyerList \}&quot; var=&quot;buyer&quot;&gt;\R\t\t\t\t\t\t\t\t&lt;form:option class=&quot;\$\{buyer\.buyerLgu\}&quot; value=&quot;\$\{buyer\.buyerId \}&quot; label=&quot;\$\{buyer\.buyerName \}&quot; /&gt;\R\t\t\t\t\t\t\t&lt;/c:forEach&gt;\R\t\t\t\t&lt;/form:select&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodBuyer\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodCost&quot;&gt;구매가&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:input path=&quot;prodCost&quot; class=&quot;form-control&quot; required=&quot;true&quot;/&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodCost\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodPrice&quot;&gt;판매가&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:input type=&quot;number&quot; path=&quot;prodPrice&quot; class=&quot;form-control&quot; required=&quot;true&quot;/&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodPrice\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodSale&quot;&gt;세일가&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:input type=&quot;number&quot; path=&quot;prodSale&quot; class=&quot;form-control&quot; required=&quot;true&quot;/&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodSale\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodOutline&quot;&gt;요약정보&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:input path=&quot;prodOutline&quot; class=&quot;form-control&quot; required=&quot;true&quot;/&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodOutline\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodDetail&quot;&gt;상세정보&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:input path=&quot;prodDetail&quot; class=&quot;form-control&quot; required=&quot;true&quot;/&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodDetail\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodImage&quot;&gt;이미지&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;input type=&quot;file&quot; name=&quot;prodImage&quot; id=&quot;prodImage&quot; class=&quot;form-control&quot;/&gt;\R&lt;!-- \t커스텀태그는 초기값을 쉽게 바인딩하기 위해 사용-&gt; file에는 value가 의미가 없으니까 커스텀태그 안쓰는게 나음 --&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodImg\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodTotalstock&quot;&gt;총재고&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:input type=&quot;number&quot; path=&quot;prodTotalstock&quot; class=&quot;form-control&quot; required=&quot;true&quot;/&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodTotalstock\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodInsdate&quot;&gt;입고일&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:input type=&quot;date&quot; path=&quot;prodInsdate&quot; class=&quot;form-control&quot; required=&quot;true&quot;/&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodInsdate\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodProperstock&quot;&gt;적정재고&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:input type=&quot;number&quot; path=&quot;prodProperstock&quot; class=&quot;form-control&quot; required=&quot;true&quot;/&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodProperstock\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodSize&quot;&gt;크기&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:input path=&quot;prodSize&quot; class=&quot;form-control&quot; required=&quot;true&quot;/&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodSize\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodColor&quot;&gt;색상&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:input path=&quot;prodColor&quot; class=&quot;form-control&quot; required=&quot;true&quot;/&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodColor\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodDelivery&quot;&gt;배송방법&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:input path=&quot;prodDelivery&quot; class=&quot;form-control&quot; required=&quot;true&quot;/&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodDelivery\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodUnit&quot;&gt;단위&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:input path=&quot;prodUnit&quot; class=&quot;form-control&quot; required=&quot;true&quot;/&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodUnit\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodQtyin&quot;&gt;입고량&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:input type=&quot;number&quot; path=&quot;prodQtyin&quot; class=&quot;form-control&quot; required=&quot;true&quot;/&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodQtyin\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodQtysale&quot;&gt;판매량&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:input type=&quot;number&quot; path=&quot;prodQtysale&quot; class=&quot;form-control&quot; required=&quot;true&quot;/&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodQtysale\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;th&gt;&lt;label for=&quot;prodMileage&quot;&gt;마일리지&lt;/label&gt;&lt;/th&gt;\R\t\t\t&lt;td&gt;\R\t\t\t\t&lt;form:input type=&quot;number&quot; path=&quot;prodMileage&quot; class=&quot;form-control&quot; required=&quot;true&quot;/&gt;\R\t\t\t\t&lt;span class=&quot;error&quot;&gt;\$\{errors\.prodMileage\}&lt;/span&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t\t&lt;tr&gt;\R\t\t\t&lt;td colspan=&quot;2&quot;&gt;\R\t\t\t\t&lt;div class=&quot;row g-2 d-flex justify-content-center mt-1&quot;&gt;\R\t\t\t\t\t&lt;div class=&quot;col-auto&quot;&gt;\R\t\t\t\t\t\t&lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;저장&lt;/button&gt;\R\t\t\t\t\t&lt;/div&gt;\R\t\t\t\t\t&lt;div class=&quot;col-auto&quot;&gt;\R\t\t\t\t\t\t&lt;button type=&quot;reset&quot; class=&quot;btn btn-warning&quot;&gt;취소&lt;/button&gt;\R\t\t\t\t\t&lt;/div&gt;\R\t\t\t\t\t&lt;div class=&quot;col-auto&quot;&gt;\t\R\t\t\t\t\t\t&lt;a class=&quot;btn btn-secondary&quot; href=&quot;&lt;c:url value=&apos;/prod/prodList\.do&apos;/&gt;&quot;&gt;목록으로&lt;/a&gt;\R\t\t\t\t\t&lt;/div&gt;\t\t\R\t\t\t\t&lt;/div&gt;\R\t\t\t&lt;/td&gt;\R\t\t&lt;/tr&gt;\R\t&lt;/table&gt;\R&lt;/form:form&gt;\R"/>
+			<item value="// TODO Auto-generated constructor stub"/>
 			<item value="lombok"/>
 			<item value="session"/>
 			<item value="isBlank"/>
@@ -15,16 +23,9 @@
 			<item value="select"/>
 			<item value="required"/>
 			<item value="adrs/view"/>
-			<item value="&quot; \}"/>
-			<item value="DATE"/>
-			<item value="NUMER"/>
-			<item value="INT"/>
-			<item value="NUMBER"/>
-			<item value="VARCHAR"/>
-			<item value="VARCHAR2"/>
-			<item value="mem_(\w+),"/>
 		</list>
 		<list key="replacehistory">
+			<item value="&lt;form:errors path=&quot;\1&quot; element=&quot;span&quot; cssClass=&quot;error&quot; /&gt;"/>
 			<item value=""/>
 			<item value="}&quot;"/>
 			<item value=", MEM_$1"/>
@@ -32,9 +33,9 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="748"/>
-		<item key="DIALOG_Y_ORIGIN" value="157"/>
-		<item key="DIALOG_WIDTH" value="322"/>
+		<item key="DIALOG_X_ORIGIN" value="491"/>
+		<item key="DIALOG_Y_ORIGIN" value="543"/>
+		<item key="DIALOG_WIDTH" value="681"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>

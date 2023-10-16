@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.vo.MemberVO;
 
@@ -18,7 +19,11 @@ public class PrincipalHttpServletRequestWrapper extends HttpServletRequestWrappe
 
 	@Override
 	public Principal getUserPrincipal() {
-		MemberVO authMember = (MemberVO) getSession().getAttribute("authMember");
+		HttpSession session = request.getSession(false);
+		MemberVO authMember = null;
+		if(session!=null && !session.isNew()) {
+			authMember  = (MemberVO) session.getAttribute("authMember");			
+		}
 		if(authMember!=null) {
 			MemberVOWrapper principal = new MemberVOWrapper(authMember);
 			return principal;

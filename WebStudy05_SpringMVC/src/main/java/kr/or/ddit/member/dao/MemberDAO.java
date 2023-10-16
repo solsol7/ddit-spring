@@ -2,6 +2,7 @@ package kr.or.ddit.member.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import kr.or.ddit.vo.MemberVO;
@@ -11,6 +12,7 @@ import kr.or.ddit.vo.PaginationInfo;
  *  사용자 인증정보와 회원 정보를 관리하기 위한 Persistence Layer
  *
  */
+@Mapper
 public interface MemberDAO {
 	/** 
 	 *  id / pasword 를 기반으로 사용자의 기본 정보를 조회

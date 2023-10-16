@@ -9,7 +9,20 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
-	<mvc:annotation-driven></mvc:annotation-driven>
+<!-- 스프링 컨테이너 내부에 validationUtils 역할을 해주는 애가 있음 - 필요하면 빈으로 직접 등록 -->
+	<mvc:annotation-driven validator="validator"></mvc:annotation-driven>
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"></bean>	
+<!-- 이 한줄을 annotation-driven이 등록해줌 -->
+
+
+<!-- 	<mvc:annotation-driven></mvc:annotation-driven> -->
+<!-- 	수집하려면 핸들러 매핑의 빈으로 등록되어야함 -->
+<!-- 	실제 사용하려면 핸들러 어뎁터도 빈으로 등록되어야함 -->
+<!-- 	=>얘네들+a 한번에 빈으로 등록해줌 -->
+	
+<!-- 	Container 어노테이션의 의미 두가지 -> 스프링 컨테이너의 빈으로 등록 -->
+<!-- 								->핸들러맵핑에 의해 수집된다 -->
+
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="/WEB-INF/views/"
@@ -31,4 +44,14 @@
 	<context:component-scan base-package="kr.or.ddit" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
+	
+<!-- 	정적 자원 처리 방법 -->
+<!-- 	1. WAS 의 DefaultServlet 에게 정적 자원 요청을 위임 -->
+<!-- 	<mvc:default-servlet-handler/> -->
+
+<!-- 	2.SimpleUrlHandlerMapping 을 추가하고, /resources/** 패턴으로 정적자원에 대한 일괄 처리 지원. -->
+<!-- 	2번방법 추천 -->
+		<mvc:resources location="/resources/" mapping="/resources/**" cache-period="0" />
+<!-- 		SimpleUrlHandlerMapping -> 핸들러 매핑 하나 추가함 - 정적자원 처리, -->
+<!-- 		원래 있던 핸들러매핑은 동적자원 처리 ..> 둘다 처리해야함 ->  url pattern : / -->
 </beans>
