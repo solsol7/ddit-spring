@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.buyer.dao.BuyerDAO">
+	<resultMap type="BuyerVO" id="selectBuyerMap">
+		<id column="BUYER_ID" property="buyerId" />
+		<association property="lprod" autoMapping="true"/>
+		<collection property="prodList" autoMapping="true"/>
+	</resultMap>
+	<select id="selectBuyer" parameterType="string" resultMap="selectBuyerMap">
+		SELECT 
+		    BUYER_ID, BUYER_NAME, BUYER_LGU,
+		        BUYER_BANK, BUYER_BANKNO, BUYER_BANKNAME,
+		        BUYER_ZIP, BUYER_ADD1, BUYER_ADD2,
+		        BUYER_COMTEL, BUYER_FAX, BUYER_MAIL,
+		        BUYER_CHARGER, BUYER_TELEXT
+		        ,LPROD_NM
+		        ,PROD_ID, PROD_NAME, PROD_COST
+		        ,PROD_SALE, PROD_OUTLINE
+		FROM BUYER
+		    INNER JOIN LPROD ON LPROD_GU=BUYER_LGU
+		    RIGHT OUTER JOIN PROD ON BUYER_ID=PROD_BUYER;
+	</select>
+</mapper>

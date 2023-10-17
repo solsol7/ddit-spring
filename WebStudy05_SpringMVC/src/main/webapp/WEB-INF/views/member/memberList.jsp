@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
 
 <table class="table table-bordered">
 	<thead>
@@ -49,23 +50,29 @@
 			<td colspan="7">
 				${paging.pagingHTML }
 				<div id="searchUI">
-					<select name="searchType">
-						<option value>전체</option>
-						<option value="name">이름</option>
-						<option value="address">지역</option>
-					</select>
-					<input type="text" name="searchWord" />
+					<form:select path="simpleCondition.searchType"  lass="form-select">
+						<form:option label="전체" value=""/>
+						<form:option value="name" label="이름"/>
+						<form:option value="address" label="지역"/>
+					</form:select>
+					<form:input path="simpleCondition.searchWord" />
 					<input type="button" value="검색" id="searchBtn"/>
 				</div>
 			</td>
 		</tr>
 	</tfoot>
 </table>
-<form id="searchForm">
-	<input type="text" name="searchType" />
-	<input type="text" name="searchWord" />
-	<input type="text" name="page" />
-</form>
+<form:form modelAttribute="simpleCondition" id="searchForm" method="get">
+	<form:input path="searchType" readonly="readonly" placeholder="searchType"/>
+	<form:input path="searchWord" readonly="readonly" placeholder="searchWord"/>
+	<input type="text" name="page" />	
+</form:form>
+
+<%-- <form id="searchForm"> --%>
+<!-- 	<input type="text" name="searchType" /> -->
+<!-- 	<input type="text" name="searchWord" /> -->
+<!-- 	<input type="text" name="page" /> -->
+<%-- </form> --%>
 
 <!-- Modal  // 내 코드 2
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -104,8 +111,8 @@
 	</div>
 </div>
 <script>
-	$(":input[name=searchType]").val("${simpleCondition.searchType}");
-	$(":input[name=searchWord]").val("${simpleCondition.searchWord}");
+// 	$(":input[name=searchType]").val("${simpleCondition.searchType}");
+// 	$(":input[name=searchWord]").val("${simpleCondition.searchWord}");
 	function fn_paging(page){
 		searchForm.page.value = page;
 		searchForm.requestSubmit();

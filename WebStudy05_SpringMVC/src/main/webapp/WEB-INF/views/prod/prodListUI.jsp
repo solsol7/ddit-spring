@@ -70,9 +70,6 @@ $("select[name=prodLgu]").on("change", function(event){
 		$options.show();
 	}
 });
-$(":input[name=prodLgu]").val("${paging.detailCondition.prodLgu}").trigger("change");
-$(":input[name=prodBuyer]").val("${paging.detailCondition.prodBuyer}");
-$(":input[name=prodName]").val("${paging.detailCondition.prodName}");
 
 $(searchForm).on("submit", function(event){
 	event.preventDefault();

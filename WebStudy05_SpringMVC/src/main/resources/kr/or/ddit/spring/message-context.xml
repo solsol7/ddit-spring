@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" 
+		p:basenames="kr.or.ddit.msg.Messages, kr.or.ddit.msg.ErrorMessages"
+	/>
+<!-- 	스프링에서는 메세지번들을 메세지소스로 캡슐화함 -->
+	
+	<bean id="messageSourceAccessor" class="org.springframework.context.support.MessageSourceAccessor" 
+		c:messageSource-ref="messageSource"
+	/>
+<!-- 	위에꺼랑 두개가 합쳐서 resourceBundle 하나를 표현하고있는것과 같음 -->
+	
+	
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"
+		p:cookieName="localeCookie"
+		p:cookieMaxAge="#{60*60*24*7}"
+	/>
+<!-- 	아이디 바뀌면 로케일 체인지 인터셉터에서 못가져다 씀 -->
+</beans>

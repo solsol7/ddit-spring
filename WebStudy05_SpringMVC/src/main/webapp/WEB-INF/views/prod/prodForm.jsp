@@ -14,6 +14,7 @@
 <!--	모델명 -> 여기까지 오기 직전에 컨트롤러에서 모델에 addAttribute한 것 -->
 <!--	메소드는 post로 초기화되기 때문에 굳이 안써도됨 -->
 <!--	액션도 현재페이지로 초기화됨 -->
+<!--	처음에 insert할 때는 prod가 없어서 jsp 오류남 -> 비어있는 객체 하나 만들어줌 -->
 	<table class="col-md-6">
 		<tr>
 			<th><label for="prodName">상품명</label></th>
@@ -41,7 +42,7 @@
 							<c:forEach items="${buyerList }" var="buyer">
 								<form:option class="${buyer.buyerLgu}" value="${buyer.buyerId }" label="${buyer.buyerName }" />
 							</c:forEach>
-				</form:select>
+					</form:select>
 				<form:errors path="prodBuyer" element="span" cssClass="error" />
 			</td>
 		</tr>

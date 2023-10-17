@@ -21,7 +21,6 @@ public class MyPageController{
 	public String myPage(MemberVOWrapper principal, HttpServletRequest req){
 		
 		String memId = principal.getName();
-		
 		MemberVO member = service.retrieveMember(memId);
 		
 		req.setAttribute("member", member);

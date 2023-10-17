@@ -9,9 +9,11 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
-<!-- 스프링 컨테이너 내부에 validationUtils 역할을 해주는 애가 있음 - 필요하면 빈으로 직접 등록 -->
+<!-- 스프링 컨테이너 내부에 validationUtils 역할을 해주는 애가 있음 - 커스터마이징 필요하면 빈으로 직접 등록 -->
 	<mvc:annotation-driven validator="validator"></mvc:annotation-driven>
-	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"></bean>	
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" 
+		p:validationMessageSource-ref="messageSource"
+	/>	
 <!-- 이 한줄을 annotation-driven이 등록해줌 -->
 
 
@@ -54,4 +56,25 @@
 		<mvc:resources location="/resources/" mapping="/resources/**" cache-period="0" />
 <!-- 		SimpleUrlHandlerMapping -> 핸들러 매핑 하나 추가함 - 정적자원 처리, -->
 <!-- 		원래 있던 핸들러매핑은 동적자원 처리 ..> 둘다 처리해야함 ->  url pattern : / -->
+	
+	<mvc:interceptors>
+		<!-- 필터와 똑같은 방식으로 동작 -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/**"/>	모든 요청 필터링 -->
+			<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
+				p:paramName="lang"
+			/>
+<!-- 			로케일을 변경해주는 작업을 함 - 로케일을 변경하는 기준 : lang -->
+<!-- 			전체매핑으로 넣으면 mvc:생략할 수 있음 -->
+<!-- 		</mvc:interceptor> -->
+		<mvc:interceptor>
+			<mvc:mapping path="/mypage"/>
+			<mvc:mapping path="/member/**"/>
+			<mvc:exclude-mapping path="/member/memberInsert.do"/>
+			<bean class="kr.or.ddit.interceptors.AuthenticationCheckinterceptor" 
+				c:loginPage="/login/loginForm.jsp"
+			/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 </beans>

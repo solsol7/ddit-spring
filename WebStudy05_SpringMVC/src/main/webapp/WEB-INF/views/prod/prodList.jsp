@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
     
 <table class="table table-bordered">
 	<thead>
@@ -48,20 +49,20 @@
 				${paging.pagingHTML }
 				<div id="searchUI"  class="row g-3 d-flex justify-content-center">
 					<div class="col-auto">
-						<select name="prodLgu" class="form-select">
+						<form:select path="detailCondition.prodLgu" id="prodLgu" class="form-select">
 							<option value>상품분류</option>
 							<c:forEach items="${lprodList }" var="lprod">
-								<option label="${lprod.lprodNm }" value="${lprod.lprodGu }" />
+								<form:option label="${lprod.lprodNm }" value="${lprod.lprodGu }" />
 							</c:forEach>
-						</select>
+						</form:select>
 					</div>
 					<div class="col-auto">
-						<select name="prodBuyer" class="form-select">
-							<option value>제조사</option>
+						<form:select path="detailCondition.prodBuyer" class="form-select">
+						<option value>제조사</option>
 							<c:forEach items="${buyerList }" var="buyer">
-								<option class="${buyer.buyerLgu	 }" label="${buyer.buyerName }" value="${buyer.buyerId }" />
+								<form:option class="${buyer.buyerLgu}" value="${buyer.buyerId }" label="${buyer.buyerName }" />
 							</c:forEach>
-						</select>
+						</form:select>
 					</div>
 					<div class="col-auto">
 						<input type="text" name="prodName" placeholder="상품명" class="form-control"/>
@@ -75,13 +76,14 @@
 		</tr>
 	</tfoot>
 </table>
-<form id="searchForm" class="border">
+<form:form modelAttribute="detailCondition" id="searchForm" class="border" method="get">
 	<h4>전송 UI</h4>
-	<input type="text" name="prodLgu" readonly="readonly" placeholder="prodLgu"/>
-	<input type="text" name="prodBuyer" readonly="readonly" placeholder="prodBuyer"/>
-	<input type="text" name="prodName" readonly="readonly" placeholder="prodName"/>
+	<form:input path="prodLgu" readonly="readonly" placeholder="prodLgu"/>
+	<form:input path="prodBuyer" readonly="readonly" placeholder="prodLgu"/>
+	<form:input path="prodName" readonly="readonly" placeholder="prodLgu"/>
 	<input type="text" name="page" readonly="readonly" placeholder="page"/>
-</form>
+<!-- 	prodVO에는 page가 없기때문에 form 커스텀태그 쓸 수 없음 -->
+</form:form>
 <script>
 $("select[name=prodLgu]").on("change", function(event){
 	let lgu = $(this).val();
@@ -93,10 +95,10 @@ $("select[name=prodLgu]").on("change", function(event){
 	}else{
 		$options.show();
 	}
-});
-$(":input[name=prodLgu]").val("${detailCondition.prodLgu}").trigger("change");
-$(":input[name=prodBuyer]").val("${detailCondition.prodBuyer}");
-$(":input[name=prodName]").val("${detailCondition.prodName}");
+}).trigger("change");
+// $(":input[name=prodLgu]").val("${detailCondition.prodLgu}").trigger("change");
+// $(":input[name=prodBuyer]").val("${detailCondition.prodBuyer}");
+// $(":input[name=prodName]").val("${detailCondition.prodName}");
 function fn_paging(page){
 	searchForm.page.value = page;
 	searchForm.requestSubmit();
