@@ -3,7 +3,12 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
+<!-- 	타일즈 순서 -->
+<!-- 	낱개 어트리뷰트 만들기 -->
+<!-- 	해당 어트리뷰트를 어떻게 배치? 탬플릿 만들기 -->
+<!-- 	탬플릿+어트리뷰트 조합해서 definition 등록 -->
 <!-- 	controller 가 선택할 view 정보 : /definition_name.tiles -->
+<!-- 동시에 여러개의 jsp가 하나로 합쳐져서 응답페이지 하나를 구성함 -->
 	<definition name="abstractDef" template="/WEB-INF/views/template.jsp">
 		<put-attribute name="title" value="Company305" />
 		<put-attribute name="preScript" value="/includee/preScript.jsp"/>
@@ -12,16 +17,16 @@
 		<put-attribute name="footer" value="/includee/footer.jsp"/>
 		<put-attribute name="postScript" value="/includee/postScript.jsp"/>
 	</definition>
-	
 	<definition name="index" extends="abstractDef">
 		<put-attribute name="content" value="/WEB-INF/views/index.jsp" />
 	</definition>
+<!-- 	name이 컨트롤러가 결정한 logicalViewName과 일치하면 타일즈 사용됨 -->
 	
 	<definition name="member/*" extends="abstractDef">
 		<put-attribute name="content" value="/WEB-INF/views/member/{1}.jsp" />
 	</definition>
 
-	<definition name="prod/*" extends="abstractDef">
+	<definition name="prod/*" extends="abstractDef" preparer="prodViewPreparer">
 		<put-attribute name="content" value="/WEB-INF/views/prod/{1}.jsp" />
 	</definition>
 	
@@ -29,7 +34,9 @@
 		<put-attribute name="content" value="/WEB-INF/views/adrs/adrsView.jsp" />
 	</definition>
 	
-	<definition name="buyer/*" extends="abstractDef">
+	<definition name="buyer/*" extends="abstractDef" preparer="buyerViewPreparer">
+<!-- 	 preparer ->스프링 컨테이너 안에 등록되어있는 빈의 아이디 -->
+<!-- 	스프링컨테이너와 타일즈컨테이너는 영역 다름 .. 타일즈가 스프링꺼 사용하려고함 .-> 중간다리역할 : -->
 		<put-attribute name="content" value="/WEB-INF/views/buyer/{1}.jsp" />
 	</definition>
 </tiles-definitions>       

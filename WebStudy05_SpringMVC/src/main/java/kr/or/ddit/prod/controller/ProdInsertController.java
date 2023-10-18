@@ -51,7 +51,6 @@ public class ProdInsertController{
 	private final ProdService service;
 	@Inject
 	private OthersDAO othersDAO;
-	
 
 	@ModelAttribute("lprodList")
 	public List<LprodVO> lprodList(){

@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.ddit.buyer.dao.BuyerDAO">
-	<resultMap type="BuyerVO" id="selectBuyerMap">
+	<resultMap type="BuyerVO" id="selectBuyerMap" autoMapping="true">
 		<id column="BUYER_ID" property="buyerId" />
-		<association property="lprod" autoMapping="true"/>
-		<collection property="prodList" autoMapping="true"/>
+		<association property="lprod" javaType="LprodVO">
+			<result property="lprodNm" column="LPROD_NM" />
+		</association>
+<!-- 		lprod는 VO에 콕 찝어서 lprodVO로 되어있기 때문에 javaType 생략 가능 -->
+<!-- 		밑에 컬렉션은 ProdVO가 제너릭으로 묶여있기 때문에 ofType 생략할 수 없음  -->
+
+		<collection property="prodList" ofType="ProdVO" autoMapping="true" />
 	</resultMap>
 	<select id="selectBuyer" parameterType="string" resultMap="selectBuyerMap">
 		SELECT 
@@ -12,12 +17,78 @@
 		        BUYER_BANK, BUYER_BANKNO, BUYER_BANKNAME,
 		        BUYER_ZIP, BUYER_ADD1, BUYER_ADD2,
 		        BUYER_COMTEL, BUYER_FAX, BUYER_MAIL,
-		        BUYER_CHARGER, BUYER_TELEXT
+		        BUYER_CHARGER, BUYER_TELEXT, BUYER_IMG
 		        ,LPROD_NM
+<!-- 		,LPROD_NM "lprod.lprodNm" -->
+<!-- 		스트링타입 알리아스 쓰면 has a 관계 쉽게 바인딩할 수 있음 -->
+<!-- 		굳이 어소시에이션 주지 않아도 바인딩 가능 = resultMap에 오토맵핑 걸려있기 때문 -->
+<!-- 		근데 그러면 association에 오토맵핑 줄 수 없음 -->
+<!-- 		거래물품이 존재하지 않는다면 prod정보는 없음 -> 그럼 prodVO가 하나이상 만들어져서는 안됨 -  -->
+<!-- 		오토맵핑 써버리면 lprod에서 조회된 정보를 담기위해 lprodVO도 만들려고함 -> -->
+<!-- 		prodVO에도 lprod가 있음 -> buyer와 prod에 똑같은 프로퍼티 있음 -->
+<!-- 		-> lprod에 autoMapping들어가면 -->
+<!-- 		상품이 존재하지 않아서 prodList가 비어있어야하는데 lprod정보를 담기위해 가짜로 prodVO를 만들어버림 -->
 		        ,PROD_ID, PROD_NAME, PROD_COST
 		        ,PROD_SALE, PROD_OUTLINE
 		FROM BUYER
 		    INNER JOIN LPROD ON LPROD_GU=BUYER_LGU
-		    RIGHT OUTER JOIN PROD ON BUYER_ID=PROD_BUYER;
+		    LEFT OUTER JOIN PROD ON BUYER_ID=PROD_BUYER
+		WHERE BUYER_ID=#{buyerID}
 	</select>
+	
+	<insert id="insertBuyer" parameterType="BuyerVO">
+		<selectKey order="BEFORE" resultType="string" keyProperty="buyerId">
+		   select #{buyerLgu}||lpad(nvl(to_number(substr(max(buyer_id), length(#{buyerLgu})+1)),0)+1,2,0)
+		    from buyer inner join prod on buyer_lgu=prod_lgu
+		    where buyer_lgu=#{buyerLgu}
+		</selectKey>
+		INSERT INTO buyer (
+		    buyer_id, buyer_name, buyer_lgu,
+		    buyer_bank, buyer_bankno,
+		    buyer_bankname, buyer_zip,
+		    buyer_add1, buyer_add2, buyer_comtel,
+		    buyer_fax, buyer_mail, buyer_charger,
+		    buyer_telext
+		    ,buyer_img
+		) VALUES (
+		    #{buyerId,jdbcType=CHAR}
+			, #{buyerName,jdbcType=VARCHAR}
+			, #{buyerLgu,jdbcType=CHAR}
+			, #{buyerBank,jdbcType=VARCHAR}
+			, #{buyerBankno,jdbcType=VARCHAR}
+			, #{buyerBankname,jdbcType=VARCHAR}
+			, #{buyerZip,jdbcType=CHAR}
+			, #{buyerAdd1,jdbcType=VARCHAR}
+			, #{buyerAdd2,jdbcType=VARCHAR}
+			, #{buyerComtel,jdbcType=VARCHAR}
+			, #{buyerFax,jdbcType=VARCHAR}
+			, #{buyerMail,jdbcType=VARCHAR}
+			, #{buyerCharger,jdbcType=VARCHAR}
+			, #{buyerTelext,jdbcType=VARCHAR}
+			,#{buyerImg,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<update id="updateBuyer" parameterType="BuyerVO">
+		UPDATE buyer
+			SET
+				 BUYER_NAME =#{buyerName,jdbcType=VARCHAR}
+				 ,BUYER_LGU =#{buyerLgu,jdbcType=CHAR}
+				 ,BUYER_BANK =#{buyerBank,jdbcType=VARCHAR}
+				 ,BUYER_BANKNO =#{buyerBankno,jdbcType=VARCHAR}
+				 ,BUYER_BANKNAME =#{buyerBankname,jdbcType=VARCHAR}
+				 ,BUYER_ZIP =#{buyerZip,jdbcType=CHAR}
+				 ,BUYER_ADD1 =#{buyerAdd1,jdbcType=VARCHAR}
+				 ,BUYER_ADD2 =#{buyerAdd2,jdbcType=VARCHAR}
+				 ,BUYER_COMTEL =#{buyerComtel,jdbcType=VARCHAR}
+				 ,BUYER_FAX =#{buyerFax,jdbcType=VARCHAR}
+				 ,BUYER_MAIL =#{buyerMail,jdbcType=VARCHAR}
+				 ,BUYER_CHARGER =#{buyerCharger,jdbcType=VARCHAR}
+				 ,BUYER_TELEXT=#{buyerTelext,jdbcType=VARCHAR}
+				 <if test="@org.apache.commons.lang3.StringUtils@isNotBlank(buyerImg)">
+				 	,BUYER_IMG =#{buyerImg,jdbcType=VARCHAR}
+				 </if>
+			WHERE
+				buyerId=#{buyerId}
+	</update>
 </mapper>

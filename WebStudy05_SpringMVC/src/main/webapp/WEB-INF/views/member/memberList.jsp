@@ -6,13 +6,13 @@
 <table class="table table-bordered">
 	<thead>
 		<tr>
-			<th>일련번호</th>
-			<th>회원명</th>
-			<th>휴대폰</th>
-			<th>이메일</th>
-			<th>생일</th>
-			<th>거주지역</th>
-			<th>마일리지</th>
+			<th><spring:message code="rownumber"/></th>
+			<th><spring:message code="member.memName"/></th>
+			<th><spring:message code="member.memHp"/></th>
+			<th><spring:message code="member.memMail"/></th>
+			<th><spring:message code="member.memBir"/></th>
+			<th><spring:message code="member.memAdd1"/></th>
+			<th><spring:message code="member.memMileage"/></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -62,10 +62,11 @@
 		</tr>
 	</tfoot>
 </table>
-<form:form modelAttribute="simpleCondition" id="searchForm" method="get">
+<form:form modelAttribute="simpleCondition" method="get" id="searchForm" class="border">
+	<h4>전송 UI</h4>
 	<form:input path="searchType" readonly="readonly" placeholder="searchType"/>
 	<form:input path="searchWord" readonly="readonly" placeholder="searchWord"/>
-	<input type="text" name="page" />	
+	<input type="text" name="page" readonly="readonly" placeholder="page"/>
 </form:form>
 
 <%-- <form id="searchForm"> --%>

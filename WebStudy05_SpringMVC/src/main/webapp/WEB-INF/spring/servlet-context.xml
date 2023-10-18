@@ -38,13 +38,16 @@
 	
 	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"
 		p:definitions="/WEB-INF/tiles/*-tiles.xml"
+		p:preparerFactoryClass="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory"
 	/>
+<!-- 		서로 다른 컨테이너 영역을 형성하고있는 타일즈/스프링이 서로의 것 쓰기위해 팩토리 등록해줘야함 -->
 	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" 
 		p:order="2"
 	/>
 	
 	<context:component-scan base-package="kr.or.ddit" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:include-filter type="annotation" expression="kr.or.ddit.common.stereotype.Preparer"/>
 	</context:component-scan>
 	
 <!-- 	정적 자원 처리 방법 -->

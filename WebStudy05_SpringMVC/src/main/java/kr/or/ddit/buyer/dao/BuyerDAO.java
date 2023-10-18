@@ -12,4 +12,8 @@ public interface BuyerDAO {
 	 * @return
 	 */
 	public BuyerVO selectBuyer(String buyerId);
+	
+	public int insertBuyer(BuyerVO buyer);
+	
+	public int updateBuyer(BuyerVO buyer);
 }

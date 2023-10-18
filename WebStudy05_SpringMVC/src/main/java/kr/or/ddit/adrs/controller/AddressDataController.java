@@ -94,6 +94,8 @@ public class AddressDataController{
 		return "jsonView";
 	}
 	
+//	/adrs/address/23
+	
 	@RequestMapping(value="/adrs/address", method = RequestMethod.DELETE)
 	public String doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String uri= StringUtils.substringAfter(req.getRequestURI(), req.getContextPath());

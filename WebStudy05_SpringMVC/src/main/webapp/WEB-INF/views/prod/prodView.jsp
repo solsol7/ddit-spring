@@ -30,9 +30,7 @@
 					<c:set var="buyer" value="${prod.buyer }" />
 					<tr>
 						<td>
-						<c:url value="/buyer/buyerView.do" var="buyerViewUrl">
-							<c:param name="what" value="${buyer.buyerId }"></c:param>
-						</c:url>
+						<c:url value="/buyer/${buyer.buyerId }" var="buyerViewUrl" />
 						<a href="${buyerViewUrl }">
 							${buyer.buyerName }
 						</a></td>

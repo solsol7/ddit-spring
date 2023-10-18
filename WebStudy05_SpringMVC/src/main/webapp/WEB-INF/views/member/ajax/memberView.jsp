@@ -1,80 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>    
 	<table class="table table-bordered">
-		<tr>
-			<th>회원아이디</th>
-			<td>${member.memId }</td>
-		</tr>
-		<tr>
-			<th>비밀번호</th>
-			<td>${member.memPass }</td>
-		</tr>
-		<tr>
-			<th>회원명</th>
-			<td>${member.memName }</td>
-		</tr>
-		<tr>
-			<th>주민번호1</th>
-			<td>${member.memRegno1 }</td>
-		</tr>
-		<tr>
-			<th>주민번호2</th>
-			<td>${member.memRegno2 }</td>
-		</tr>
-		<tr>
-			<th>생일</th>
-			<td>${member.memBir }</td>
-		</tr>
-		<tr>
-			<th>우편번호</th>
-			<td>${member.memZip }</td>
-		</tr>
-		<tr>
-			<th>주소1</th>
-			<td>${member.memAdd1 }</td>
-		</tr>
-		<tr>
-			<th>주소2</th>
-			<td>${member.memAdd2 }</td>
-		</tr>
-		<tr>
-			<th>집전번</th>
-			<td>${member.memHometel }</td>
-		</tr>
-		<tr>
-			<th>회사전번</th>
-			<td>${member.memComtel }</td>
-		</tr>
-		<tr>
-			<th>휴대폰</th>
-			<td>${member.memHp }</td>
-		</tr>
-		<tr>
-			<th>이메일</th>
-			<td>${member.memMail }</td>
-		</tr>
-		<tr>
-			<th>직업</th>
-			<td>${member.memJob }</td>
-		</tr>
-		<tr>
-			<th>취미</th>
-			<td>${member.memLike }</td>
-		</tr>
-		<tr>
-			<th>기념일</th>
-			<td>${member.memMemorial }</td>
-		</tr>
-		<tr>
-			<th>기념일자</th>
-			<td>${member.memMemorialday }</td>
-		</tr>
-		<tr>
-			<th>마일리지</th>
-			<td>${member.memMileage }</td>
-		</tr>
-		<tr>
-			<th>탈퇴여부</th>
-			<td>${member.memDelete }</td>
-		</tr>
-	</table>
+	<tr>
+		<th><spring:message code="member.memImage" /></th>
+		<td>
+			<c:if test="${not empty member.memImg }">
+				<img src="data:image/*;base64,${member.memImgBase64 }"/>
+			</c:if>
+		</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memId" /></th>
+		<td>${member.memId }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memPass" /></th>
+		<td>${member.memPass }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memName" /></th>
+		<td>${member.memName }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memRegno1" /></th>
+		<td>${member.memRegno1 }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memRegno2" /></th>
+		<td>${member.memRegno2 }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memBir" /></th>
+		<td>${member.memBir }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memZip" /></th>
+		<td>${member.memZip }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memAdd1" /></th>
+		<td>${member.memAdd1 }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memAdd2" /></th>
+		<td>${member.memAdd2 }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memHometel" /></th>
+		<td>${member.memHometel }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memComtel" /></th>
+		<td>${member.memComtel }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memHp" /></th>
+		<td>${member.memHp }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memMail" /></th>
+		<td>${member.memMail }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memJob" /></th>
+		<td>${member.memJob }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memLike" /></th>
+		<td>${member.memLike }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memMemorial" /></th>
+		<td>${member.memMemorial }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memMemorialday" /></th>
+		<td>${member.memMemorialday }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memMileage" /></th>
+		<td>${member.memMileage }</td>
+	</tr>
+	<tr>
+		<th><spring:message code="member.memDelete" /></th>
+		<td>${member.memDelete }</td>
+	</tr>
+</table>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

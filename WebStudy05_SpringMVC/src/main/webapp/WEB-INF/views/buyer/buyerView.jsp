@@ -3,159 +3,97 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <table class="table table-bordered">
 	<tr>
-		<th>상품코드</th>
-		<td>${prod.prodId }</td>
+		<th>제조사아이디</th>
+		<td>${buyer.buyerId }</td>
 	</tr>
 	<tr>
-		<th>상품명</th>
-		<td>${prod.prodName }</td>
+		<th>제조사명</th>
+		<td>${buyer.buyerName }</td>
 	</tr>
 	<tr>
-		<th>상품분류</th>
-		<td>${prod.lprod.lprodNm }</td>
-	</tr>
-	<tr>	
-		<th>제조사</th>
+		<th>사업자등록증사본</th>
 		<td>
-			<table class="table table-bordered">
-				<thead class="table-dark">
-					<tr>
-						<th>제조사명</th>
-						<th>소재지</th>
-						<th>담당자명</th>
-						<th>거래은행명</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:set var="buyer" value="${prod.buyer }" />
-					<tr>
-						<td>
-						<c:url value="/buyer/buyerView.do" var="buyerViewUrl">
-							<c:param name="what" value="${buyer.buyerId }"></c:param>
-						</c:url>
-						<a href="${buyerViewUrl }">
-							${buyer.buyerName }
-						</a></td>
-						<td>${buyer.buyerAdd1 }</td>
-						<td>${buyer.buyerCharger }</td>
-						<td>${buyer.buyerBank }</td>
-					</tr>
-				</tbody>
-			</table>
+			<c:if test="${not empty buyer.buyerImg }">
+				<a href="<c:url value='/buyer/${buyer.buyerId }/buyerImage' />">사업자등록증사본 다운로드</a>
+			</c:if>
+<!-- 			웹리소스는 이미지로 그릴 수 있지만 파일리소스는 못그림.. -->
 		</td>
 	</tr>
 	<tr>
-		<th>구매가</th>
-		<td>${prod.prodCost }</td>
+		<th>분류</th>
+		<td>${buyer.lprod.lprodNm }</td>
 	</tr>
 	<tr>
-		<th>판매가</th>
-		<td>${prod.prodPrice }</td>
+		<th>은행</th>
+		<td>${buyer.buyerBank }</td>
 	</tr>
 	<tr>
-		<th>세일가</th>
-		<td>${prod.prodSale }</td>
+		<th>계좌</th>
+		<td>${buyer.buyerBankno }</td>
 	</tr>
 	<tr>
-		<th>요약정보</th>
-		<td>${prod.prodOutline }</td>
+		<th>계좌주</th>
+		<td>${buyer.buyerBankname }</td>
 	</tr>
 	<tr>
-		<th>상세정보</th>
-		<td>${prod.prodDetail }</td>
+		<th>우편번호</th>
+		<td>${buyer.buyerZip }</td>
 	</tr>
 	<tr>
-		<th>이미지</th>
-		<td>
-			<img src="<c:url value='/resources/prodImages/${prod.prodImg }'/>"/>
-		</td>
+		<th>주소1</th>
+		<td>${buyer.buyerAdd1 }</td>
 	</tr>
 	<tr>
-		<th>총재고</th>
-		<td>${prod.prodTotalstock }</td>
+		<th>주소2</th>
+		<td>${buyer.buyerAdd2 }</td>
 	</tr>
 	<tr>
-		<th>입고일</th>
-		<td>${prod.prodInsdate }</td>
+		<th>전번</th>
+		<td>${buyer.buyerComtel }</td>
 	</tr>
 	<tr>
-		<th>적정재고</th>
-		<td>${prod.prodProperstock }</td>
+		<th>팩스</th>
+		<td>${buyer.buyerFax }</td>
 	</tr>
 	<tr>
-		<th>크기</th>
-		<td>${prod.prodSize }</td>
+		<th>메일</th>
+		<td>${buyer.buyerMail }</td>
 	</tr>
 	<tr>
-		<th>색상</th>
-		<td>${prod.prodColor }</td>
+		<th>담당자</th>
+		<td>${buyer.buyerCharger }</td>
 	</tr>
 	<tr>
-		<th>배송방법</th>
-		<td>${prod.prodDelivery }</td>
-	</tr>
-	<tr>
-		<th>단위</th>
-		<td>${prod.prodUnit }</td>
-	</tr>
-	<tr>
-		<th>입고량</th>
-		<td>${prod.prodQtyin }</td>
-	</tr>
-	<tr>
-		<th>판매량</th>
-		<td>${prod.prodQtysale }</td>
-	</tr>
-	<tr>
-		<th>마일리지</th>
-		<td>${prod.prodMileage }</td>
+		<th>내선번호</th>
+		<td>${buyer.buyerTelext }</td>
 	</tr>
 	<tr>
 		<td colspan="2">
-			<c:url value="/prod/prodUpdate.do" var="prodUpdateUrl">
-				<c:param name="what" value="${prod.prodId }" />
-			</c:url>
-			<a class="btn btn-primary" href="${prodUpdateUrl }">상품수정</a>
+			<a href="<c:url value='/buyer/${buyer.buyerId}/form'/>">수정</a>
 		</td>
 	</tr>
 </table>
-<h4>구매자 정보</h4>
+<h4>생산품목</h4>
 <table class="table table-bordered">
-	<thead class="table-dark">
+	<thead>
 		<tr>
-			<th>구매자이름</th>
-			<th>휴대폰</th>
-			<th>이메일</th>
-			<th>거주지</th>
+			<th>상품명</th>
+			<th>구매가</th>
+			<th>판매가</th>
 			<th>마일리지</th>
-			<th>구매일자</th>
 		</tr>
 	</thead>
 	<tbody>
-		<c:set var="cartList" value="${prod.cartList }" />
-		<c:if test="${not empty  cartList}">
-			<c:forEach items="${cartList }" var="cart">
-				<c:set var="member" value="${cart.member }" />
-				<tr>
-					<td>${member.memName }</td>
-					<td>${member.memHp }</td>
-					<td>${member.memMail }</td>
-					<td>${member.memAdd1 }</td>
-					<td>${member.memMileage }</td>
-					<td>${cart.cartDate }</td>
+		<c:set value="${buyer.prodList }" var="prodList" />
+		<c:if test="${not empty  prodList}">
+			<c:forEach items="${prodList }" var="prod">
+		 		<tr>
+					<td>${prod.prodName }</td>
+					<td>${prod.prodCost }</td>
+					<td>${prod.prodSale }</td>
+					<td>${prod.prodMileage }</td>
 				</tr>
 			</c:forEach>
 		</c:if>
-		<c:if test="${empty  cartList}">
-			<tr>
-				<td colspan="6">구매자 없음.</td>
-			</tr>
-		</c:if>
 	</tbody>
 </table>
-
-
-
-<!-- 거래처분류명 -->
-<!-- 해당 거래처와의 거래 물품 목록 -->
-<!-- 제조사와의 거래 물품정보에는 중복이 없어야함 -->
