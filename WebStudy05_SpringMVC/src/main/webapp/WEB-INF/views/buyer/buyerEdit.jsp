@@ -2,16 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<c:if test="${not empty message }">
-	alert(${message })
-</c:if>
-<form:form action="<c:url value='/buyer/${buyerId }'/>" method="post" modelAttribute="buyer">
+
+<c:url value="/buyer/${buyerId }" var="updateUrl" />
+<!-- 핸들러어뎁터는 pathVariable을 자동으로 모델에 추가해줌-> 그래서 buyer.buyerId 아니어도 됨 -->
+<form:form action="${updateUrl}" method="post" modelAttribute="buyer" enctype="multipart/form-data">
 <%-- <form action="<%=request.getContextPath() %>/buyer/${buyerId}" method="post"> --%>
 	<input type="hidden" name="_method" value="put" />
 <!-- 	브라우저는 ajax말고는 put 요청을 보낼 수 없음 -> post로 한다음 _method 이름의 파라미터 보내면 그 값으로 바꿔주기 -->
 <!-- 	->filter 등록 : HiddenHttpMethodFilter -->
 
 <table class="col-md-6">
+<!-- 	경로변수에 있는 애의 이름과 VO의 이름이 동일하면 hidden태그로 id 따로 안넣어줘도됨 -->
 	<tr>
 		<th>사업자등록증사본</th>
 		<td>

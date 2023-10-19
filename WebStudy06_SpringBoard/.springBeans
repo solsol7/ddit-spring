@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.9.21.202202040945-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/main/webapp/WEB-INF/spring/view-controller.xml</config>
+	</configs>
+	<autoconfigs>
+		<config>src/main/resources/com/springboard/spring/conf/message-context.xml</config>
+		<config>src/main/resources/com/springboard/spring/conf/mapper-context.xml</config>
+		<config>src/main/resources/com/springboard/spring/conf/application-context.xml</config>
+		<config>src/main/resources/com/springboard/spring/conf/datasource-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/servlet-context.xml</config>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

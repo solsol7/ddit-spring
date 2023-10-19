@@ -29,6 +29,9 @@ public class BuyerImageDownloadController {
 	@Inject
 	private BuyerService service;
 	
+//	컨트롤러에서 바로 응답이 나갈 수 있도록 ResponseEntity 사용
+//	ResponseEntity -> 응답데이터가 포장되는 규칙이 그대로 적용
+//	line/header/body -> line - statusCode /header /body - contents 셋팅
 	@GetMapping("/buyer/{buyerId}/buyerImage")
 	public ResponseEntity<Resource> buyerImageDownload(@PathVariable String buyerId) throws IOException {
 //		제네릭 -> 바디 영역 안에 들어갈 컨텐츠 타입
@@ -54,13 +57,14 @@ public class BuyerImageDownloadController {
 		ContentDisposition disposition =  ContentDisposition.attachment()
 										.filename(buyer.getBuyerName(), Charset.defaultCharset())
 										.build();
+//				그릴게(inline) 아니라 다운로드해야함 -> attachment
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentDisposition(disposition);
 		headers.setContentLength(imageFile.contentLength());
-		return ResponseEntity.ok()	 // 상태코드 200
-					.headers(headers)
-					.contentLength(imageFile.contentLength()) // 파일의 크기 셋팅해서 넘김
-					.body(imageFile);	// 바디에 이미지파일 넣어줌
+		return ResponseEntity.ok()	 // response의 line 셋팅 - 상태코드 200
+					.headers(headers)	// response의 헤더 셋팅
+					.body(imageFile);	// response의 바디 셋팅 -바디에 이미지파일 넣어줌
+										// 스프링이 이미지파일을 스트링카피 떠서 응답보내줌
 	}
 }

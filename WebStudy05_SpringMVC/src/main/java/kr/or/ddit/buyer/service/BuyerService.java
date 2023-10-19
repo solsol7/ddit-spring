@@ -1,7 +1,10 @@
 package kr.or.ddit.buyer.service;
 
+import java.util.List;
+
 import kr.or.ddit.common.enumpkg.ServiceResult;
 import kr.or.ddit.vo.BuyerVO;
+import kr.or.ddit.vo.PaginationInfo;
 
 public interface BuyerService {
 	/**
@@ -11,7 +14,19 @@ public interface BuyerService {
 	 */
 	public BuyerVO retrieveBuyer(String buyerId);
 	
+	/**
+	 * 제조사 등록
+	 * @param buyer
+	 * @return
+	 */
 	public ServiceResult createBuyer(BuyerVO buyer);
 	
+	/**
+	 * 수정
+	 * @param buyer
+	 * @return
+	 */
 	public ServiceResult modifyBuyer(BuyerVO buyer);
+	
+	public void retrieveBuyerList(PaginationInfo<BuyerVO> paging);
 }

@@ -47,4 +47,4 @@
 				  </div>
 				</div>
 
-<script src="<%=request.getContextPath()%>/resources/js/app/adrs/address.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/app/adrs/address.js"></script>

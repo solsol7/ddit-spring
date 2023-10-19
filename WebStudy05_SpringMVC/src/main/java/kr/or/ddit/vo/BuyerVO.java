@@ -21,6 +21,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(of="buyerId")
 public class BuyerVO implements Serializable{
 	
+	private String rnum;
+	
 	@NotBlank(groups = {UpdateGroup.class, DeleteGroup.class})
 	private String buyerId;
 	@NotBlank

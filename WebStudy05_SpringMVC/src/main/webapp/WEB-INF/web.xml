@@ -5,7 +5,7 @@
     <welcome-file>index.do</welcome-file>
   </welcome-file-list>
   
-  <!-- needed for ContextLoaderListener -->
+  <!-- needed for ContextLoaderListener --> <!-- 상위컨테이너 설정 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:kr/or/ddit/spring/*-context.xml</param-value>

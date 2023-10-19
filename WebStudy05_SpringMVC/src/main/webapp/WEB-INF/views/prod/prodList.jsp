@@ -79,8 +79,8 @@
 <form:form modelAttribute="detailCondition" id="searchForm" class="border" method="get">
 	<h4>전송 UI</h4>
 	<form:input path="prodLgu" readonly="readonly" placeholder="prodLgu"/>
-	<form:input path="prodBuyer" readonly="readonly" placeholder="prodLgu"/>
-	<form:input path="prodName" readonly="readonly" placeholder="prodLgu"/>
+	<form:input path="prodBuyer" readonly="readonly" placeholder="prodBuyer"/>
+	<form:input path="prodName" readonly="readonly" placeholder="prodName"/>
 	<input type="text" name="page" readonly="readonly" placeholder="page"/>
 <!-- 	prodVO에는 page가 없기때문에 form 커스텀태그 쓸 수 없음 -->
 </form:form>

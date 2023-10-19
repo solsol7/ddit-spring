@@ -33,7 +33,6 @@ $(function(){
 			$.each(adrsList,function(){
 				trTags+= makeTrTag(this);
 				
-				
 			});
 		}else{
 			trTags += `
@@ -50,14 +49,14 @@ $(function(){
 		event.preventDefault();
 		let url = this.action;
 		let method = this.method;
-		let data = $(this).serializeJSON();
-		let json = JSON.stringify(data);
+		let data = $(this).serializeJSON();	// 객체만들기
+		let json = JSON.stringify(data);  // 마샬링
 		let settings = {
 			url : baseUrl,
 			method : method,
 			data : json,
 			headers :{
-				"Content-Type":"application/json; charset=UTF-8"
+				"Content-Type":"application/json; charset=UTF-8"	// 나 json줬어 - 라고 알려주기
 			},
 			dataType : "json"
 			

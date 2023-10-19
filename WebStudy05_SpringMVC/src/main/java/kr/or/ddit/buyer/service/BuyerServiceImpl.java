@@ -2,6 +2,7 @@ package kr.or.ddit.buyer.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import kr.or.ddit.buyer.dao.BuyerDAO;
 import kr.or.ddit.common.enumpkg.ServiceResult;
 import kr.or.ddit.vo.BuyerVO;
+import kr.or.ddit.vo.PaginationInfo;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -62,7 +64,7 @@ public class BuyerServiceImpl implements BuyerService{
 
 	@Override
 	public ServiceResult modifyBuyer(BuyerVO buyer) {
-		int cnt = dao.insertBuyer(buyer);
+		int cnt = dao.updateBuyer(buyer);
 		ServiceResult result = null;
 		if(cnt>0) {
 			processBuyerImage(buyer);
@@ -71,6 +73,13 @@ public class BuyerServiceImpl implements BuyerService{
 			result=ServiceResult.FAIL;
 		}
 		return result;
+	}
+
+	@Override
+	public void retrieveBuyerList(PaginationInfo<BuyerVO> paging) {
+		int totalRecord = dao.selectTotalRecord(paging);
+		paging.setTotalRecord(totalRecord);
+		paging.setDataList(dao.selectBuyerList(paging));
 	}
 
 }

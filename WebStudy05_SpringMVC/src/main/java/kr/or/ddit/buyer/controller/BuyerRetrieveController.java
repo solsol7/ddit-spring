@@ -1,18 +1,25 @@
 package kr.or.ddit.buyer.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.ddit.buyer.service.BuyerService;
+import kr.or.ddit.paging.BootstrapPaginationRenderer;
+import kr.or.ddit.prod.dao.OthersDAO;
 import kr.or.ddit.vo.BuyerVO;
+import kr.or.ddit.vo.LprodVO;
+import kr.or.ddit.vo.PaginationInfo;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -42,8 +49,30 @@ public class BuyerRetrieveController {
 	@Inject
 	private BuyerService service;
 	
+	@Inject
+	private OthersDAO othersDAO;
+	
+	@ModelAttribute("lprodList")
+	public List<LprodVO> lprodList(){
+		return othersDAO.selectLprodList();
+	}
+	
 	@GetMapping
-	public String buyerListRestful() {
+	public String buyerListRestful(
+			@RequestParam(required = false, defaultValue = "1") int page
+			, @ModelAttribute("detailCondition") BuyerVO detailCondition
+			, Model model
+			) {
+		PaginationInfo<BuyerVO> paging = new PaginationInfo<BuyerVO>(4, 2);
+		paging.setCurrentPage(page);
+		paging.setDetailCondition(detailCondition);
+		
+		paging.setRenderer(new BootstrapPaginationRenderer());
+		
+		service.retrieveBuyerList(paging);
+		
+		model.addAttribute("paging",paging);
+		
 		return "buyer/buyerList";
 	}
 	

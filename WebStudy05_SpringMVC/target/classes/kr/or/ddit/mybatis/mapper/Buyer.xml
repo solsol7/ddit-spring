@@ -36,6 +36,48 @@
 		WHERE BUYER_ID=#{buyerID}
 	</select>
 	
+	<sql id="searchFrag">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="@org.apache.commons.lang3.StringUtils@isNotBlank(detailCondition.buyerLgu)">
+				AND BUYER_LGU = #{detailCondition.buyerLgu};
+			</if>
+			<if test="@org.apache.commons.lang3.StringUtils@isNotBlank(detailCondition.buyerName)">
+			 	AND BUYER_NAME INSTR(BUYER_NAME, #{detailCondition.buyerName})>0
+			</if>
+		</trim>
+	</sql>
+<!-- 	분류와 이름 동시에 검색할 수 있음.. 두 개가 and연산으로 연결되어야함  -->
+<!-- 	- 검색조건 3가지 경우를 커버하려면 and라는 키워드에 대한 처리가 필요 -->
+<!-- 	 -> trim .. 검색하고있다라면 where절 붙여주고 잘못들어있는 and가 앞에 붙어있다면 oberride -->
+	
+	<select id="selectTotalRecord" parameterType="PaginationInfo" resultType="int">
+		SELECT COUNT(*)
+		FROM BUYER
+		<include refid="searchFrag" />
+	</select>
+	
+	<select id="selectBuyerList" parameterType="PaginationInfo" resultMap="selectBuyerMap">
+		SELECT
+		    B.*
+		FROM
+		    (SELECT ROWNUM RNUM, A.*
+		    FROM
+		        (SELECT
+		            buyer_id, buyer_name, buyer_lgu,
+		            buyer_bank, buyer_bankno, buyer_bankname,
+		            buyer_zip, buyer_add1, buyer_add2,
+		            buyer_comtel, buyer_fax, buyer_mail,
+		            buyer_charger,buyer_telext, buyer_img
+		            , LPROD_NM
+		        FROM BUYER INNER JOIN LPROD ON BUYER_LGU=LPROD_GU
+		        <include refid="searchFrag" />
+		        ORDER BY BUYER_ID) A
+		    ) B
+		<![CDATA[
+			WHERE RNUM>=#{startRow} AND RNUM<=#{endRow}
+		]]>
+	</select>
+	
 	<insert id="insertBuyer" parameterType="BuyerVO">
 		<selectKey order="BEFORE" resultType="string" keyProperty="buyerId">
 		   select #{buyerLgu}||lpad(nvl(to_number(substr(max(buyer_id), length(#{buyerLgu})+1)),0)+1,2,0)
@@ -70,7 +112,7 @@
 	</insert>
 	
 	<update id="updateBuyer" parameterType="BuyerVO">
-		UPDATE buyer
+			UPDATE buyer
 			SET
 				 BUYER_NAME =#{buyerName,jdbcType=VARCHAR}
 				 ,BUYER_LGU =#{buyerLgu,jdbcType=CHAR}
@@ -89,6 +131,7 @@
 				 	,BUYER_IMG =#{buyerImg,jdbcType=VARCHAR}
 				 </if>
 			WHERE
-				buyerId=#{buyerId}
+				BUYER_ID=#{buyerId}
 	</update>
+
 </mapper>
