@@ -8,19 +8,7 @@
   </button>
   <ul class="nav px-3 col">
     <li class="nav-item text-nowrap">
-      <a class="nav-link" href="<c:url value='/member/memberList.do' />">회원관리</a>
-    </li>
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="<c:url value='/prod/prodList.do' />">상품관리(동기처리)</a>
-    </li>
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="<c:url value='/prod/ajax/prodListUI.do' />">상품관리(비동기처리)</a>
-    </li>
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="<c:url value='/buyer' />">제조사관리</a>
-    </li>
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="#">자유게시판</a>
+      <a class="nav-link" href="<c:url value='/board' />">자유게시판</a>
     </li>
     <li class="nav-item text-nowrap">
       <a class="nav-link" href="?lang=en">영문</a>
@@ -41,3 +29,4 @@
     </li>
   </ul>
 </nav>
+

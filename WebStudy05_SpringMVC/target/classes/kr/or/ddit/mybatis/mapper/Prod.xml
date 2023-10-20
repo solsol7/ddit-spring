@@ -56,6 +56,9 @@
 			</if>
 		</trim>
 	</sql>
+	<!-- 	분류와 이름 동시에 검색할 수 있음.. 두 개가 and연산으로 연결되어야함  -->
+<!-- 	- 검색조건 3가지 경우를 커버하려면 and라는 키워드에 대한 처리가 필요 -->
+<!-- 	 -> trim .. 검색하고있다라면 where절 붙여주고 잘못들어있는 and가 앞에 붙어있다면 oberride -->
 	
 	<select id="selectTotalRecord" resultType="int" parameterType="PaginationInfo">
 		SELECT COUNT(*)

@@ -2,6 +2,93 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springboard.board.dao.BoardDAO">
 	<insert id="insertBoard" parameterType="FreeBoardVO">
-		
+		<selectKey order="BEFORE" keyProperty="boNo" resultType="int">
+			SELECT FREEBOARD_SEQ.NEXTVAL
+			FROM DUAL
+		</selectKey>
+		INSERT INTO FREEBOARD (
+		    BO_NO, BO_TITLE, BO_WRITER,
+		    BO_IP, BO_MAIL, BO_PASS,
+		    BO_CONTENT
+		) VALUES (
+		   #{boNo,jdbcType=NUMERIC}
+			, #{boTitle,jdbcType=VARCHAR}
+			, #{boWriter,jdbcType=VARCHAR}
+			, #{boIp,jdbcType=VARCHAR}
+			, #{boMail,jdbcType=VARCHAR}
+			, #{boPass,jdbcType=VARCHAR}
+			, #{boContent,jdbcType=CLOB}
+<!-- 			이 두개는 기본값 있음 -->
+<!-- 			, sysdate -->
+<!-- 			, 0 -->
+		)
 	</insert>
+	
+	<resultMap type="FreeBoardVO" id="boardMap" autoMapping="true">
+		<id property="boNo" column="ABO_NO"/>
+		<collection property="attatchList" ofType="AttatchVO" autoMapping="true" />
+	</resultMap>
+	<select id="selectBoard" parameterType="int" resultMap="boardMap">
+		SELECT
+		    A.BO_NO ABO_NO, BO_TITLE, BO_WRITER,
+		    BO_IP, BO_MAIL, BO_PASS,
+		    BO_CONTENT, BO_DATE, BO_HIT
+		    , ATT_NO, ATT_FILENAME, ATT_FANCYSIZE
+		    , ATT_DOWNLOAD
+		    , B.BO_NO
+		FROM
+		    FREEBOARD A LEFT OUTER JOIN ATTATCH B ON A.BO_NO = B.BO_NO
+		WHERE
+		    A.BO_NO=#{boNo}
+	</select>
+	
+	<update id="incrementHit" parameterType="int">
+		 UPDATE FREEBOARD
+		 SET
+		 BO_HIT = BO_HIT +1
+		 WHERE BO_NO = #{boNo}
+	</update>
+
+
+	<sql id="searchFrag">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="@org.apache.commons.lang3.StringUtils@isNotBlank(simpleCondition.boTitle)">
+				AND BO_TITLE INSTR(BO_TITLE, #{simpleCondition.boTitle})>0
+			</if>
+			<if test="@org.apache.commons.lang3.StringUtils@isNotBlank(simpleCondition.boWriter)">
+			 	AND BO_WRITER INSTR(BUYER_NAME, #{simpleCondition.boWriter})>0
+			</if>
+			<if test="@org.apache.commons.lang3.StringUtils@isNotBlank(simpleCondition.boContent)">
+			 	AND BO_CONTENT INSTR(BUYER_NAME, #{simpleCondition.boContent})>0
+			</if>
+		</trim>
+	</sql>
+
+	<select id="selectTotalRecord" parameterType="PaginationInfo" resultType="int">
+		SELECT COUNT(*)
+		FROM FREEBOARD
+		<include refid="searchFrag" />
+	</select>
+	
+	<select id="selectBoardList" parameterType="PaginationInfo" resultMap="boardMap">
+		SELECT
+		    B.*
+		FROM
+		    (SELECT ROWNUM RNUM, A.*
+		    FROM
+		        (SELECT
+				    a.BO_NO ABO_NO, BO_TITLE, BO_WRITER,
+				    BO_IP, BO_MAIL, BO_PASS,
+				    BO_CONTENT, BO_DATE, BO_HIT
+				    ,(SELECT DISTINCT COUNT(*)
+				        FROM ATTATCH B WHERE A.BO_NO=B.BO_NO) ATCH_COUNT
+				FROM FREEBOARD A
+		        <include refid="searchFrag" />
+		        ORDER BY BO_DATE DESC) A
+		    ) B
+		<![CDATA[
+			WHERE RNUM>=#{startRow} AND RNUM<=#{endRow}
+		]]>
+	</select>
+
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,17 +54,25 @@ public class BuyerImageDownloadController {
 		
 		Resource imageFile = buyerImages.createRelative(filename);
 		
+		HttpHeaders headers = new HttpHeaders();
+
 //		Content-Disposition: attachment; filename="filename.jpg"
 		ContentDisposition disposition =  ContentDisposition.attachment()
-										.filename(buyer.getBuyerName(), Charset.defaultCharset())
-										.build();
+				.filename(buyer.getBuyerName(), Charset.defaultCharset())
+				// 저장파일명, 한글이 포함되어있을 수 있기 때문에 charset 셋팅
+				.build();
 //				그릴게(inline) 아니라 다운로드해야함 -> attachment
 		
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentDisposition(disposition);
+		headers.setContentDisposition(disposition);	// 이거 안하면 다운로드가 아니라 그려버림
 		headers.setContentLength(imageFile.contentLength());
+//		파일을 저장할 수 있는 단위로 쪼개서 나감(청크?) ..> 몇개의 청크 -> 몇번의 다운로드? ==> contentLength
+		
+		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+		// 뭘 다운로드 받고있는지.. 다운로드할 때는 contentType 보통 한가지로 셋팅 - APPLICATION_OCTET_STREAM
+			// -> 스트림을 그대로 카피해서 주면 됨 -> octet : 1byte : 바이트 스트림데이터를 받고있다를 의미
+		
 		return ResponseEntity.ok()	 // response의 line 셋팅 - 상태코드 200
-					.headers(headers)	// response의 헤더 셋팅
+					.headers(headers)	// response의 헤더 셋팅 - 필요하다면 여러 개 셋팅 - 하나의 객체로 모아놓음(headers)
 					.body(imageFile);	// response의 바디 셋팅 -바디에 이미지파일 넣어줌
 										// 스프링이 이미지파일을 스트링카피 떠서 응답보내줌
 	}
