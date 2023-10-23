@@ -43,4 +43,9 @@
 		WHERE ATT_NO = #{attNo}
 	</update>
 	
+	<delete id="deleteAttatch" parameterType="int">
+		DELETE FROM ATTATCH
+		WHERE ATT_NO=#{attNo}
+	</delete>
+	
 </mapper>

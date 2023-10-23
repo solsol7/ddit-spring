@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springboard.board.service.BoardService;
 import com.springboard.board.vo.FreeBoardVO;
+import com.springboard.paging.BootstrapPaginationRenderer;
 import com.springboard.paging.vo.PaginationInfo;
 import com.springboard.paging.vo.SearchVO;
 
@@ -44,7 +45,7 @@ public class BoardRetrieveController {
 	
 	@GetMapping
 	public String boardListRetrieve(
-			@RequestParam(value = "page", defaultValue = "1" ) int page
+			@RequestParam(value = "page", required = false, defaultValue = "1" ) int page
 			,@ModelAttribute("simpleCondition") SearchVO simpleCondition
 			, Model model
 			){
@@ -53,6 +54,9 @@ public class BoardRetrieveController {
 		paging.setCurrentPage(page);
 		paging.setSimpleCondition(simpleCondition);
 		
+		service.retrieveBoardList(paging);
+		
+		paging.setRenderer(new BootstrapPaginationRenderer());
 		model.addAttribute("paging",paging);
 		
 		return "board/boardList";

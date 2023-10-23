@@ -18,5 +18,15 @@ public interface BoardService {
 	
 	public AttatchVO retrieveAttatch(int attNo);
 	
-	public List<FreeBoardVO> retrieveBoardList(PaginationInfo<FreeBoardVO> paging);
+	public void retrieveBoardList(PaginationInfo<FreeBoardVO> paging);
+	
+	/**
+	 * 게시글 수정과 삭제에서 사용될 인증
+	 * @param inputData
+	 * @return 인증에 성공했을 경우, 해당 게시글 반환, 실패한 경우, null 반환
+	 */
+	public FreeBoardVO authenticateBoard(FreeBoardVO inputData);
+	
+	public void modifyBoard(FreeBoardVO board);
+	public void removeBoard(FreeBoardVO inputData);
 }

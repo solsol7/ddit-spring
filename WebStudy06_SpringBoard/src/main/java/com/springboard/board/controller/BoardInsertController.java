@@ -3,6 +3,7 @@ package com.springboard.board.controller;
 import javax.inject.Inject;
 import javax.servlet.annotation.MultipartConfig;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,8 +29,10 @@ public class BoardInsertController {
 	private BoardService service;
 	
 	@ModelAttribute("newBoard")	// 이름 일치 -> 세션에 넣어줌
-	public FreeBoardVO board() {
-		return new FreeBoardVO();
+	public FreeBoardVO board(Authentication authentication) {
+		FreeBoardVO board = new FreeBoardVO();
+		board.setBoWriter(authentication.getName());
+		return board;
 	}
 	
 	@GetMapping
@@ -44,7 +47,9 @@ public class BoardInsertController {
 			, BindingResult errors
 			, RedirectAttributes redirectAttributes
 			, SessionStatus sessionStatus
-		) {
+			
+	) {
+		
 		String viewName = null;
 		if(!errors.hasErrors()) {
 			service.createBoard(board);

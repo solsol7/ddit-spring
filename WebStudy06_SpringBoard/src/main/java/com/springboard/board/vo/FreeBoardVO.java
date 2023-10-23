@@ -9,12 +9,14 @@ import java.util.stream.Collectors;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.groups.Default;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.springboard.validate.grouphint.DeleteGroup;
 import com.springboard.validate.grouphint.UpdateGroup;
 
 import lombok.Data;
@@ -24,7 +26,7 @@ import lombok.ToString;
 @Data
 @EqualsAndHashCode(of = "boNo")
 public class FreeBoardVO implements Serializable{
-	@NotNull(groups = UpdateGroup.class)
+	@NotNull(groups = {UpdateGroup.class, DeleteGroup.class})
 	private Integer boNo;
 	@NotBlank
 	private String boTitle;
@@ -34,7 +36,7 @@ public class FreeBoardVO implements Serializable{
 	private String boIp;
 	@Email
 	private String boMail;
-	@NotBlank
+	@NotBlank(groups= {Default.class, DeleteGroup.class})
 	@JsonIgnore		// 마샬링 제외
 	private transient String boPass; // transient 직렬화 제외
 	@ToString.Exclude
@@ -64,4 +66,6 @@ public class FreeBoardVO implements Serializable{
 	
 	private int ATCH_COUNT;
 	private String rnum;
+
+	private int fileCnt;
 }

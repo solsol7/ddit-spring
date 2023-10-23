@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <table>
 	<tr>
@@ -56,4 +57,26 @@
 		<th>조회수</th>
 		<td>${board.boHit }</td>
 	</tr>
+	<tr>
+		<td colspan="2">
+			<a href="<c:url value='/board/${boNo }/edit' />">글수정</a>
+			<a href="javascript:;" onclick="deleteFunction();">글삭제</a>
+<!-- 			상세페이지를 타고옴 -> 이미 경로변수 있음 -> board.boNo라고 안해도 됨 -->
+		</td>
+	</tr>
 </table>
+<form id="deleteForm" method="post" action="<c:url value='/board/${boNo }' />">
+	<input type="text" name="_method" value="delete" />
+	<input type="password" name="boPass" />
+	<security:csrfInput/>
+</form>
+
+<script>
+	function deleteFunction(){
+		let password = prompt("비밀번호 입력 : ");
+		if(password){
+			deleteForm.boPass.value = password;
+			deleteForm.requestSubmit();
+		}
+	}
+</script>

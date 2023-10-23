@@ -15,9 +15,10 @@
 	</tr>
 	<tr>
 		<th><label for="boWriter">작성자</label></th>
-		<td><form:input type="text" path="boWriter" class="form-control"
-				 />
-			<form:errors path="boWriter" element="span" cssClass="error" /></td>
+		<td>
+			<form:input type="text" path="boWriter" class="form-control" />  
+  			<form:errors path="boWriter" element="span" cssClass="error" />
+  		</td>  
 	</tr>
 	<tr>
 		<th><label for="boIp">IP</label></th>
